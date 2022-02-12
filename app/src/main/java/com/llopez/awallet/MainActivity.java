@@ -9,6 +9,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
     private DrawerLayout drawerLayout;
     private AppBarLayout appBarLayout;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +31,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        appBarLayout = findViewById(R.id.appBarLayout);
+        toolbar = findViewById(R.id.toolbar);
 
         final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
         navController.addOnDestinationChangedListener(this::onDestinationChanged);
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(R.id.login_fragment, R.id.splashFragment, R.id.listBillsFragment).build();
+        setSupportActionBar(toolbar);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     }
 
     @Override
@@ -41,17 +48,33 @@ public class MainActivity extends AppCompatActivity {
         navController.removeOnDestinationChangedListener(this::onDestinationChanged);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        return navController.navigateUp();
+    }
+
+    @Override
+    public void onBackPressed() {
+    }
+
     private void onDestinationChanged(@NonNull NavController controller,
                                       @NonNull NavDestination destination, @Nullable Bundle arguments) {
         if (destination.getId() == R.id.login_fragment) {
-//            appBarLayout.setVisibility(View.GONE);
+            toolbar.setVisibility(View.GONE);
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else if (destination.getId() == R.id.splashFragment) {
-//            appBarLayout.setVisibility(View.GONE);
+            toolbar.setVisibility(View.GONE);
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else {
-            appBarLayout.setVisibility(View.VISIBLE);
+            toolbar.setVisibility(View.VISIBLE);
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        }
+
+        if (destination.getId() == R.id.addBillFragment) {
+
+        }
+
+        if (destination.getId() == R.id.listBillsFragment) {
         }
     }
 }

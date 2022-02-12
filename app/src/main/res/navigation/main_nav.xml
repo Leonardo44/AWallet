@@ -29,6 +29,15 @@
     <fragment
         android:id="@+id/listBillsFragment"
         android:name="com.llopez.awallet.ui.list_bills.ListBillsFragment"
-        android:label="fragment_list_bills"
-        tools:layout="@layout/fragment_list_bills" />
+        android:label="@string/bills_list_fragment"
+        tools:layout="@layout/fragment_list_bills">
+        <action
+            android:id="@+id/action_listBillsFragment_to_addBillFragment"
+            app:destination="@id/addBillFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBillFragment"
+        android:name="com.llopez.awallet.ui.add_bill.AddBillFragment"
+        android:label="@string/add_bill_fragment"
+        tools:layout="@layout/fragment_add_bill" />
 </navigation>

@@ -13,5 +13,6 @@
     <color name="blue_secondary_light">#5472d3</color>
     <color name="blue_secondary_dark">#002171</color>
     <color name="black">#FF000000</color>
+    <color name="gray_text">#595959</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
