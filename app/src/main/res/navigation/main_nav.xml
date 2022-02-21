@@ -40,4 +40,9 @@
         android:name="com.llopez.awallet.ui.add_bill.AddBillFragment"
         android:label="@string/add_bill_fragment"
         tools:layout="@layout/fragment_add_bill" />
+    <fragment
+        android:id="@+id/listEarningsFragment"
+        android:name="com.llopez.awallet.ui.list_earnings.ListEarningsFragment"
+        android:label="@string/fragment_list_earnings"
+        tools:layout="@layout/fragment_list_earnings" />
 </navigation>

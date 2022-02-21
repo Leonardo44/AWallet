@@ -2,20 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/menu_category_expenses"
             android:checked="true"
-            android:title="1" />
+            android:title="@string/menu_category_expenses" />
         <item
-            android:id="@+id/nav_productos"
-            android:title="2" />
+            android:id="@+id/menu_category_earnings"
+            android:title="@string/menu_category_earnings" />
         <item
-            android:id="@+id/nav_carrito"
-            android:title="3" />
+            android:id="@+id/menu_list_bills"
+            android:title="@string/menu_expenses" />
         <item
-            android:id="@+id/nav_ordenes"
-            android:title="4" />
-        <item
-            android:id="@+id/nav_facturas"
-            android:title="5" />
+            android:id="@+id/menu_list_earnings"
+            android:title="@string/menu_earnings" />
     </group>
 </menu>

@@ -40,12 +40,12 @@ tools:openDrawer="left">
     android:layout_gravity="start"
     android:fitsSystemWindows="true"
     android:scrollbarAlwaysDrawVerticalTrack="true"
-    app:itemBackground="@color/white"
+    app:itemBackground="@drawable/nav_view_item_background"
     app:itemHorizontalPadding="20dp"
     app:itemIconTint="#336FBD"
     app:itemMaxLines="2"
     app:itemTextAppearance="@style/TextAppearance.AppCompat.Medium"
-    app:itemTextColor="#336FBD"
+    app:itemTextColor="@color/gray_text"
     app:menu="@menu/drawer_menu">
 </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

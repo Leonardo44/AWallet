@@ -10,4 +10,10 @@
 
     <string name="bills_list_fragment">Lista de gastos</string>
     <string name="add_bill_fragment">Agregar gasto</string>
+    <string name="fragment_list_earnings">Lista de ingresos</string>
+
+    <string name="menu_category_expenses">Categoría de egresos</string>
+    <string name="menu_category_earnings">Categoría de ingresos</string>
+    <string name="menu_expenses">Mis egresos</string>
+    <string name="menu_earnings">Mis ingresos</string>
 </resources>
