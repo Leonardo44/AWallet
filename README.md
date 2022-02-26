@@ -60,7 +60,7 @@ dependencies {
 
 ## Mockups de la aplicación ##
 
-![Figma](/documentacion/awallet_logo.png)
+![Figma](/documentacion/figma.png)
 
 El siguiente enlace se muestra el tablero de trabajo del equipo en figma [aquí](https://www.figma.com/file/xuDpHcuVH9y9lEAsUU3w8h/DSM---App)
 
