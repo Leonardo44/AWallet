@@ -3,7 +3,7 @@
 ![Build](https://travis-ci.org/laravel/framework.svg "Build Status")
 ![MIT](https://img.shields.io/packagist/l/laravel/framework "License")
 
-![Logo](/documentation/awallet_logo.png, "Logo")
+![Logo](/documentation/awallet_logo.png)
 
 Aplicación android nativa para llevar el registro de gastos e ingresos que puede tener una
 persona natural a lo largo de la semana, clasificando según sus tipos de gastos para que
@@ -60,7 +60,7 @@ dependencies {
 
 ## Mockups de la aplicación ##
 
-![Figma](/documentation/figma.png, "Figma")
+![Figma](/documentation/figma.png)
 
 El siguiente enlace se muestra el tablero de trabajo del equipo en figma [aquí](https://www.figma.com/file/xuDpHcuVH9y9lEAsUU3w8h/DSM---App)
 
