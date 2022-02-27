@@ -54,4 +54,14 @@
         android:name="com.llopez.awallet.ui.add_earning.AddEarningFragment"
         android:label="@string/add_earning_fragment"
         tools:layout="@layout/fragment_add_earning" />
+    <fragment
+        android:id="@+id/billCategoryListFragment"
+        android:name="com.llopez.awallet.ui.list_category_bills.BillCategoryListFragment"
+        android:label="@string/menu_category_expenses"
+        tools:layout="@layout/fragment_bill_category_list" />
+    <fragment
+        android:id="@+id/earningCategoryListFragment"
+        android:name="com.llopez.awallet.ui.list_category_earnings.EarningCategoryListFragment"
+        android:label="@string/menu_category_earnings"
+        tools:layout="@layout/fragment_earning_category_list" />
 </navigation>

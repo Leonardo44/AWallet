@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navController = navHostFragment.getNavController();
         navController.addOnDestinationChangedListener(this::onDestinationChanged);
         AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(R.id.login_fragment, R.id.splashFragment, R.id.listBillsFragment, R.id.listEarningsFragment).build();
+                new AppBarConfiguration.Builder(R.id.login_fragment, R.id.splashFragment, R.id.listBillsFragment, R.id.listEarningsFragment, R.id.billCategoryListFragment, R.id.earningCategoryListFragment).build();
         setSupportActionBar(toolbar);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
@@ -91,7 +91,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_category_earnings:
+                navController.navigate(R.id.earningCategoryListFragment);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
             case R.id.menu_category_expenses:
+                navController.navigate(R.id.billCategoryListFragment);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
             case R.id.menu_list_bills:
                 navController.navigate(R.id.listBillsFragment);
                 drawerLayout.closeDrawer(GravityCompat.START);
