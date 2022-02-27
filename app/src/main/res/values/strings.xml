@@ -6,11 +6,12 @@
     <string name="btn_add">Ir</string>
     <string name="btn_delete">Eliminar</string>
     <string name="btn_edit">Editar</string>
-    <string name="monetary_value_default">$00.00</string>
+    <string name="monetary_value_default">$0.00</string>
 
     <string name="bills_list_fragment">Lista de egreso</string>
     <string name="add_bill_fragment">Agregar egreso</string>
     <string name="fragment_list_earnings">Lista de ingresos</string>
+    <string name="add_earning_fragment">Agregar ingreso</string>
 
     <string name="menu_category_expenses">Categoría de egresos</string>
     <string name="menu_category_earnings">Categoría de ingresos</string>
@@ -18,6 +19,7 @@
     <string name="menu_earnings">Mis ingresos</string>
 
     <string name="fragment_add_bill_title">Ingresar nombre de egreso</string>
+    <string name="fragment_add_bill_price">Ingresar monto egresado</string>
     <string name="fragment_add_bill_category">Seleccionar categoría</string>
     <string name="fragment_add_bill_description">Ingresar descripción (Opcional)</string>
     <string name="fragment_add_bill_button">Guardar</string>

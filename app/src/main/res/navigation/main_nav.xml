@@ -44,5 +44,14 @@
         android:id="@+id/listEarningsFragment"
         android:name="com.llopez.awallet.ui.list_earnings.ListEarningsFragment"
         android:label="@string/fragment_list_earnings"
-        tools:layout="@layout/fragment_list_earnings" />
+        tools:layout="@layout/fragment_list_earnings" >
+        <action
+            android:id="@+id/action_listEarningsFragment_to_addEarningFragment"
+            app:destination="@id/addEarningFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEarningFragment"
+        android:name="com.llopez.awallet.ui.add_earning.AddEarningFragment"
+        android:label="@string/add_earning_fragment"
+        tools:layout="@layout/fragment_add_earning" />
 </navigation>
