@@ -12,6 +12,8 @@
     <string name="add_bill_fragment">Agregar egreso</string>
     <string name="fragment_list_earnings">Lista de ingresos</string>
     <string name="add_earning_fragment">Agregar ingreso</string>
+    <string name="add_earning_category_fragment">Agregar categoría de ingreso</string>
+    <string name="add_bill_category_fragment">Agregar categoría de egreso</string>
 
     <string name="menu_category_expenses">Categoría de egresos</string>
     <string name="menu_category_earnings">Categoría de ingresos</string>

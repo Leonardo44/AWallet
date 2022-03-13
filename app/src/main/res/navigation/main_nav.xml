@@ -58,10 +58,28 @@
         android:id="@+id/billCategoryListFragment"
         android:name="com.llopez.awallet.ui.list_category_bills.BillCategoryListFragment"
         android:label="@string/menu_category_expenses"
-        tools:layout="@layout/fragment_bill_category_list" />
+        tools:layout="@layout/fragment_bill_category_list" >
+        <action
+            android:id="@+id/action_billCategoryListFragment_to_createBillCategoryFragment"
+            app:destination="@id/createBillCategoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/earningCategoryListFragment"
         android:name="com.llopez.awallet.ui.list_category_earnings.EarningCategoryListFragment"
         android:label="@string/menu_category_earnings"
-        tools:layout="@layout/fragment_earning_category_list" />
+        tools:layout="@layout/fragment_earning_category_list" >
+        <action
+            android:id="@+id/action_earningCategoryListFragment_to_createEarningCategoryFragment"
+            app:destination="@id/createEarningCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createBillCategoryFragment"
+        android:name="com.llopez.awallet.ui.add_bill_category.CreateBillCategoryFragment"
+        android:label="@string/add_bill_category_fragment"
+        tools:layout="@layout/fragment_create_bill_category" />
+    <fragment
+        android:id="@+id/createEarningCategoryFragment"
+        android:name="com.llopez.awallet.ui.add_earning_category.CreateEarningCategoryFragment"
+        android:label="@string/add_earning_category_fragment"
+        tools:layout="@layout/fragment_create_earning_category" />
 </navigation>
