@@ -19,7 +19,7 @@ public class BillsAdapter  extends RecyclerView.Adapter<BillsAdapter.ViewHolder>
 
         public ViewHolder(View view) {
             super(view);
-            textView = view.findViewById(R.id.tvValue);
+            textView = view.findViewById(R.id.tvBillItemValue);
         }
     }
 

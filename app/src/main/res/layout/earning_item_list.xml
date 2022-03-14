@@ -1,6 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tvEarningItemValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/monetary_value_default"
+        android:textColor="@color/red_error"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewIdentifierEarningItem"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvEarningItemCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@color/gray_text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvEarningItemValue"
+        app:layout_constraintStart_toStartOf="@+id/tvEarningItemValue"
+        app:layout_constraintTop_toBottomOf="@+id/tvEarningItemValue" />
+
+    <TextView
+        android:id="@+id/tvEarningItemCreatedAtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@color/gray_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvEarningItemCategory"
+        app:layout_constraintTop_toBottomOf="@+id/tvEarningItemCategory" />
+
+    <TextView
+        android:id="@+id/tvEarningItemCreatedAtValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@color/gray_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvEarningItemValue"
+        app:layout_constraintStart_toEndOf="@+id/tvEarningItemCreatedAtTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvEarningItemCategory" />
+
+    <TextView
+        android:id="@+id/tvEarningItemUpdatedAtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@color/gray_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvEarningItemCreatedAtTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvEarningItemCreatedAtTitle" />
+
+    <TextView
+        android:id="@+id/tvEarningItemUpdatedAtValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@color/gray_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvEarningItemCreatedAtValue"
+        app:layout_constraintStart_toEndOf="@+id/tvEarningItemUpdatedAtTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvEarningItemCreatedAtValue" />
+
+    <TextView
+        android:id="@+id/tvEarningItemDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@color/gray_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvEarningItemUpdatedAtValue"
+        app:layout_constraintStart_toStartOf="@+id/tvEarningItemUpdatedAtTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvEarningItemUpdatedAtValue" />
+
+    <Button
+        android:id="@+id/btnDeleteEarningItem"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:contentDescription="@string/btn_add"
+        android:text=""
+        android:textColor="@color/gray_text"
+        app:icon="@drawable/ic_baseline_delete_outline_24"
+        app:iconGravity="top"
+        app:iconTint="@color/gray_text"
+        app:layout_constraintEnd_toEndOf="@+id/tvEarningItemDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvEarningItemDescription"
+        app:rippleColor="@android:color/holo_red_light"
+        app:tint="@color/gray_text" />
+
+    <Button
+        android:id="@+id/btnUpdateEarningItem"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/btn_add"
+        android:text=""
+        android:textColor="@color/gray_text"
+        app:icon="@drawable/ic_baseline_edit_24"
+        app:iconGravity="top"
+        app:iconTint="@color/gray_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeleteEarningItem"
+        app:layout_constraintTop_toBottomOf="@+id/tvEarningItemDescription"
+        app:rippleColor="@color/blue_secondary_light"
+        app:tint="@color/gray_text" />
+
+    <View
+        android:id="@+id/viewIdentifierEarningItem"
+        android:layout_width="8dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

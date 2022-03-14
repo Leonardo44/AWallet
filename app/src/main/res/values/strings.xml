@@ -25,4 +25,12 @@
     <string name="fragment_add_bill_category">Seleccionar categoría</string>
     <string name="fragment_add_bill_description">Ingresar descripción (Opcional)</string>
     <string name="fragment_add_bill_button">Guardar</string>
+
+    <string name="fragment_create_bill_category_name">Ingresar nombre de categoría</string>
+    <string name="fragment_create_bill_category_color">Ingresar color de categoría</string>
+    <string name="fragment_create_bill_category_btn">Crear</string>
+
+    <string name="fragment_create_earning_category_name">Ingresar nombre de categoría</string>
+    <string name="fragment_create_earning_category_color">Ingresar color de categoría</string>
+    <string name="fragment_create_earning_category_btn">Crear</string>
 </resources>
