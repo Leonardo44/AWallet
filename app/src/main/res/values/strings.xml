@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">AWallet</string>
+    <string name="web_client_id">169096346302-hib7v65rs4s0hclm6k22mvo6rscisgtv.apps.googleusercontent.com</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -33,4 +35,8 @@
     <string name="fragment_create_earning_category_name">Ingresar nombre de categoría</string>
     <string name="fragment_create_earning_category_color">Ingresar color de categoría</string>
     <string name="fragment_create_earning_category_btn">Crear</string>
+
+    <string name="login_fragment_title">Bienvenido a AWallet</string>
+    <string name="login_fragment_error">Ha ocurrido un error en el proceso de login</string>
+    <string name="login_fragment_success">Espere un momento… lo estamos redirigiendo</string>
 </resources>

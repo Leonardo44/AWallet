@@ -37,14 +37,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
-
         navView = findViewById(R.id.nav_view);
 
         final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
         navController.addOnDestinationChangedListener(this::onDestinationChanged);
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(R.id.login_fragment, R.id.splashFragment, R.id.listBillsFragment, R.id.listEarningsFragment, R.id.billCategoryListFragment, R.id.earningCategoryListFragment).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.loginFragment, R.id.splashFragment, R.id.listBillsFragment, R.id.listEarningsFragment, R.id.billCategoryListFragment, R.id.earningCategoryListFragment).build();
         setSupportActionBar(toolbar);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
@@ -105,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.menu_list_earnings:
                 navController.navigate(R.id.listEarningsFragment);
                 drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            case R.id.login_fragment:
+                toolbar.setVisibility(View.GONE);
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 return true;
         }
         return false;
