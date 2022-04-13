@@ -39,4 +39,6 @@
     <string name="login_fragment_title">Bienvenido a AWallet</string>
     <string name="login_fragment_error">Ha ocurrido un error en el proceso de login</string>
     <string name="login_fragment_success">Espere un momento… lo estamos redirigiendo</string>
+
+    <string name="bill_category_item_list">Fecha de creación:</string>
 </resources>

@@ -30,7 +30,7 @@ public class CreateBillCategoryFragment extends Fragment {
 
     private CreateBillCategoryViewModel viewModel;
 
-    private Integer indexColor;
+    private String hexColor;
 
     public CreateBillCategoryFragment() {
     }
@@ -61,7 +61,7 @@ public class CreateBillCategoryFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Color colorItem = (Color) parent.getItemAtPosition(position);
-                indexColor = colorItem.index;
+                hexColor = getResources().getString(colorItem.color);
             }
 
             @Override
@@ -89,6 +89,6 @@ public class CreateBillCategoryFragment extends Fragment {
     }
 
     private void createOrUpdateBillCategory() {
-        viewModel.createCategory(categoryName.getText().toString(), indexColor);
+        viewModel.createCategory(categoryName.getText().toString(), hexColor);
     }
 }

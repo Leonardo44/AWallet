@@ -32,18 +32,17 @@ public class CreateEarningCategoryViewModel extends ViewModel {
         this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
     }
 
-    public void createCategory(String name, Integer color) {
+    public void createCategory(String name, String color) {
         dataStatus.setValue(SendDataStatus.LOADING);
 
         Map<String, Object> category = new HashMap<>();
         category.put("name", name);
-        category.put("color", String.format("#%06X", (0xFFFFFF & color)));
+        category.put("color", color);
         category.put("createdAt", dateFormat.format(new Date()));
 
-        CollectionReference userDataReference = firestore.collection("data_"+ user.getEmail() +"");
+        CollectionReference userDataReference = firestore.collection("earning_category_"+ user.getEmail() +"");
 
-        userDataReference.document("earning_category")
-                .collection(name)
+        userDataReference
                 .add(category)
                 .addOnSuccessListener(documentReference -> {
                     dataStatus.setValue(SendDataStatus.SUCCESS);

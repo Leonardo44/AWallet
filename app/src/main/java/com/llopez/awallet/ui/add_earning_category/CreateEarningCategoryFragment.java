@@ -28,7 +28,7 @@ public class CreateEarningCategoryFragment extends Fragment {
 
     private CreateEarningCategoryViewModel viewModel;
 
-    private Integer indexColor;
+    private String hexColor;
 
     public CreateEarningCategoryFragment() {
     }
@@ -59,7 +59,7 @@ public class CreateEarningCategoryFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Color colorItem = (Color) parent.getItemAtPosition(position);
-                indexColor = colorItem.index;
+                hexColor = getResources().getString(colorItem.color);
             }
 
             @Override
@@ -87,6 +87,6 @@ public class CreateEarningCategoryFragment extends Fragment {
     }
 
     private void createEarningCategory() {
-        viewModel.createCategory(categoryName.getText().toString(), indexColor);
+        viewModel.createCategory(categoryName.getText().toString(), hexColor);
     }
 }
