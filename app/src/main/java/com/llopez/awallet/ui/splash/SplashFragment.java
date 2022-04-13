@@ -1,5 +1,7 @@
 package com.llopez.awallet.ui.splash;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,12 +24,23 @@ public class SplashFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_splash, container, false);
+        verifyLogin();
         return layout;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_loginFragment);
+    }
+
+    private void verifyLogin() {
+        SharedPreferences preferences = getActivity().getSharedPreferences("credential", Context.MODE_PRIVATE);
+        boolean isLogged = preferences.getBoolean("isLogged", false);
+
+        if (isLogged) {
+            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_listBillsFragment);
+        } else {
+            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_loginFragment);
+        }
     }
 }

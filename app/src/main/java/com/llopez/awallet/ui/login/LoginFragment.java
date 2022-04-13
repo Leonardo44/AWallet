@@ -3,6 +3,7 @@ package com.llopez.awallet.ui.login;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -113,5 +115,12 @@ public class LoginFragment extends Fragment {
 
     private void successToast() {
         Toast.makeText(getActivity(), R.string.login_fragment_success, Toast.LENGTH_LONG).show();
+
+        SharedPreferences preferences = getActivity().getSharedPreferences("credential", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isLogged", true);
+        editor.apply();
+
+        NavHostFragment.findNavController(this).navigate(R.id.listBillsFragment);
     }
 }
