@@ -16,4 +16,13 @@
     <color name="black">#FF000000</color>
     <color name="gray_text">#595959</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="category_first_color">#222222</color>
+    <color name="category_second_color">#2962ff</color>
+    <color name="category_third_color">#E36B2C</color>
+    <color name="category_fourth_color">#02AC66</color>
+    <color name="category_fifth_color">#FF689D</color>
+    <color name="category_sixth_color">#EF280F</color>
+    <color name="category_seventh_color">#808080</color>
+    <color name="category_eighth_color">#EFC12D</color>
 </resources>

@@ -30,7 +30,8 @@
                 android:textColor="@color/gray_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:autofillHints="@string/fragment_create_bill_category_name" />
 
             <Spinner
                 android:id="@+id/spinnerBillCategoryColor"
