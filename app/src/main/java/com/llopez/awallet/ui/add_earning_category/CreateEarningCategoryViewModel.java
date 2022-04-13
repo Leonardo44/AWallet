@@ -1,10 +1,7 @@
-package com.llopez.awallet.ui.add_bill_category;
-
-import android.util.Log;
+package com.llopez.awallet.ui.add_earning_category;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -16,7 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateBillCategoryViewModel extends ViewModel {
+public class CreateEarningCategoryViewModel extends ViewModel {
     private FirebaseFirestore firestore;
     private FirebaseUser user;
     private SimpleDateFormat dateFormat;
@@ -29,7 +26,7 @@ public class CreateBillCategoryViewModel extends ViewModel {
         return this.dataStatus;
     }
 
-    public CreateBillCategoryViewModel(FirebaseUser user, FirebaseFirestore firestore) {
+    public CreateEarningCategoryViewModel(FirebaseUser user, FirebaseFirestore firestore) {
         this.user = user;
         this.firestore = firestore;
         this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
@@ -45,7 +42,7 @@ public class CreateBillCategoryViewModel extends ViewModel {
 
         CollectionReference userDataReference = firestore.collection("data_"+ user.getEmail() +"");
 
-        userDataReference.document("bill_category")
+        userDataReference.document("earning_category")
                 .collection(name)
                 .add(category)
                 .addOnSuccessListener(documentReference -> {
