@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.llopez.awallet.R;
 import com.llopez.awallet.utilities.Color;
 import com.llopez.awallet.utilities.ColorCategoryAdapter;
+import com.llopez.awallet.utilities.Validations;
 
 public class CreateEarningCategoryFragment extends Fragment {
     private EditText categoryName;
@@ -38,7 +40,7 @@ public class CreateEarningCategoryFragment extends Fragment {
         btnCreateCategory = layout.findViewById(R.id.btnCreateEarningCategory);
 
         btnCreateCategory.setOnClickListener(v -> {
-            createEarningCategory();
+            createOrUpdateEarningCategory();
         });
 
         ColorCategoryAdapter adapter = new ColorCategoryAdapter(getContext(), Color.CategoryColorList);
@@ -47,7 +49,12 @@ public class CreateEarningCategoryFragment extends Fragment {
         return layout;
     }
 
-    private void createEarningCategory() {
-
+    private void createOrUpdateEarningCategory() {
+        String categoryNameText = categoryName.getText().toString();
+        if(Validations.IsValidString(categoryNameText)){
+            
+        }else{
+            Toast.makeText(getActivity(), R.string.fragment_add_earning_category_name_error, Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -27,7 +27,7 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:textSize="16sp"
-                android:hint="@string/fragment_add_bill_title"
+                android:hint="@string/fragment_add_earning_name"
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:textColor="@color/gray_text"
@@ -93,7 +93,7 @@
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:layout_marginTop="8dp"
-                android:hint="@string/fragment_add_bill_price"
+                android:hint="@string/fragment_add_earning_price"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextEarningName" />

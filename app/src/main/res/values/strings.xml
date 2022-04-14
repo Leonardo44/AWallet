@@ -17,6 +17,13 @@
     <string name="add_earning_category_fragment">Agregar categoría de ingreso</string>
     <string name="add_bill_category_fragment">Agregar categoría de egreso</string>
 
+    <string name="fragment_add_earning_category_name_error">Ingrese un nombre de categoría válido</string>
+
+    <string name="fragment_add_earning_name">Ingrese un nombre del ingreso</string>
+    <string name="fragment_add_earning_price">Ingresar monto del ingreso</string>
+    <string name="fragment_add_earning_name_error">Ingrese un nombre de ingreso válido</string>
+    <string name="fragment_add_earning_price_error">Ingrese un monto válido</string>
+
     <string name="menu_category_expenses">Categoría de egresos</string>
     <string name="menu_category_earnings">Categoría de ingresos</string>
     <string name="menu_expenses">Mis egresos</string>
@@ -27,10 +34,14 @@
     <string name="fragment_add_bill_category">Seleccionar categoría</string>
     <string name="fragment_add_bill_description">Ingresar descripción (Opcional)</string>
     <string name="fragment_add_bill_button">Guardar</string>
+    <string name="fragment_add_bill_title_error">Ingrese un título válido</string>
+    <string name="fragment_add_bill_price_error">Ingrese un monto válido</string>
+    <string name="fragment_add_bill_category_error">Seleccione una categoría válida</string>
 
     <string name="fragment_create_bill_category_name">Ingresar nombre de categoría</string>
     <string name="fragment_create_bill_category_color">Ingresar color de categoría</string>
     <string name="fragment_create_bill_category_btn">Crear</string>
+    <string name="fragment_create_bill_category_name_error">Ingrese un nombre de categoría válido</string>
 
     <string name="fragment_create_earning_category_name">Ingresar nombre de categoría</string>
     <string name="fragment_create_earning_category_color">Ingresar color de categoría</string>

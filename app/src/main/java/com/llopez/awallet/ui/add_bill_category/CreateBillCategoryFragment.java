@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,6 +23,8 @@ import com.llopez.awallet.R;
 import com.llopez.awallet.utilities.Color;
 import com.llopez.awallet.utilities.ColorCategoryAdapter;
 import com.llopez.awallet.utilities.SendDataStatus;
+
+import com.llopez.awallet.utilities.Validations;
 
 public class CreateBillCategoryFragment extends Fragment {
     private EditText categoryName;
@@ -89,6 +92,11 @@ public class CreateBillCategoryFragment extends Fragment {
     }
 
     private void createOrUpdateBillCategory() {
-        viewModel.createCategory(categoryName.getText().toString(), indexColor);
+        String categoryNameText = categoryName.getText().toString();
+        if(Validations.IsValidString(categoryNameText)){
+            viewModel.createCategory(categoryNameText, indexColor);
+        }else{
+            Toast.makeText(getActivity(), R.string.fragment_create_bill_category_name_error, Toast.LENGTH_LONG).show();
+        }
     }
 }

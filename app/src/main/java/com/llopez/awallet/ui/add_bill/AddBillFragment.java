@@ -7,60 +7,61 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.llopez.awallet.utilities.Validations;
 
 import com.llopez.awallet.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddBillFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddBillFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private EditText editTextBillName, editTextBillDescription, editTextBillPrice;
+    private Button btnAddBill;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public AddBillFragment() { }
 
-    public AddBillFragment() {
-        // Required empty public constructor
+    public static AddBillFragment newInstance() {
+        AddBillFragment fragment = new AddBillFragment();
+        return fragment;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddBillFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddBillFragment newInstance(String param1, String param2) {
-        AddBillFragment fragment = new AddBillFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public void createOrUpdateBill(){
+        String billName = editTextBillName.getText().toString();
+        String billPrice = editTextBillPrice.getText().toString();
+        String billDescription = editTextBillDescription.getText().toString();
+
+        if(!(Validations.IsValidString(billName))){
+            Toast.makeText(getActivity(), R.string.fragment_add_bill_title_error, Toast.LENGTH_LONG).show();
+        }else{
+            if(!(Validations.IsValidString(billPrice)) || !(Validations.IsNumeric(billPrice)) || !(Validations.IsNumberGreaterThan(billPrice, 0))){
+                Toast.makeText(getActivity(), R.string.fragment_add_bill_price_error, Toast.LENGTH_LONG).show();
+            }else{
+
+            }
+        }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_bill, container, false);
+        View layout = inflater.inflate(R.layout.fragment_add_bill, container, false);
+
+        editTextBillName = layout.findViewById(R.id.editTextBillName);
+        editTextBillDescription = layout.findViewById(R.id.editTextBillDescription);
+        editTextBillPrice = layout.findViewById(R.id.editTextBillPrice);
+        btnAddBill = layout.findViewById(R.id.btnAddBill);
+
+        btnAddBill.setOnClickListener(v -> {
+            createOrUpdateBill();
+        });
+
+        return layout;
     }
 }
