@@ -21,6 +21,7 @@
     <string name="menu_category_earnings">Categoría de ingresos</string>
     <string name="menu_expenses">Mis egresos</string>
     <string name="menu_earnings">Mis ingresos</string>
+    <string name="menu_home">Inicio</string>
 
     <string name="fragment_add_bill_title">Ingresar nombre de egreso</string>
     <string name="fragment_add_bill_price">Ingresar monto egresado</string>

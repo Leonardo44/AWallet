@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
         navController.addOnDestinationChangedListener(this::onDestinationChanged);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.loginFragment, R.id.splashFragment, R.id.listBillsFragment, R.id.listEarningsFragment, R.id.billCategoryListFragment, R.id.earningCategoryListFragment).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.loginFragment, R.id.splashFragment, R.id.homeFragment, R.id.listBillsFragment, R.id.listEarningsFragment, R.id.billCategoryListFragment, R.id.earningCategoryListFragment).build();
         setSupportActionBar(toolbar);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
     }
 
-    private void loadUserData() {
+    public void loadUserData() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if(user != null){
@@ -131,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             case R.id.menu_list_earnings:
                 navController.navigate(R.id.listEarningsFragment);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            case R.id.menu_home:
+                navController.navigate(R.id.homeFragment);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             case R.id.login_fragment:

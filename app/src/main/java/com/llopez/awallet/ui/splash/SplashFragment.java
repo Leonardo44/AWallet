@@ -38,7 +38,7 @@ public class SplashFragment extends Fragment {
         boolean isLogged = preferences.getBoolean("isLogged", false);
 
         if (isLogged) {
-            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_listBillsFragment);
+            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_homeFragment);
         } else {
             NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_loginFragment);
         }
