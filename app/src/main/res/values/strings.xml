@@ -28,6 +28,7 @@
     <string name="menu_category_earnings">Categoría de ingresos</string>
     <string name="menu_expenses">Mis egresos</string>
     <string name="menu_earnings">Mis ingresos</string>
+    <string name="menu_home">Inicio</string>
 
     <string name="fragment_add_bill_title">Ingresar nombre de egreso</string>
     <string name="fragment_add_bill_price">Ingresar monto egresado</string>
@@ -50,4 +51,8 @@
     <string name="login_fragment_title">Bienvenido a AWallet</string>
     <string name="login_fragment_error">Ha ocurrido un error en el proceso de login</string>
     <string name="login_fragment_success">Espere un momento… lo estamos redirigiendo</string>
+
+    <string name="bill_category_item_list">Fecha de creación:</string>
+
+    <string name="empty_list_message">No hay datos por mostrar</string>
 </resources>

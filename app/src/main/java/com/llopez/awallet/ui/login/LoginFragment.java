@@ -37,6 +37,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.llopez.awallet.MainActivity;
 import com.llopez.awallet.R;
 
 
@@ -120,6 +121,8 @@ public class LoginFragment extends Fragment {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("isLogged", true);
         editor.apply();
+
+        ((MainActivity)getActivity()).loadUserData();
 
         NavHostFragment.findNavController(this).navigate(R.id.listBillsFragment);
     }
