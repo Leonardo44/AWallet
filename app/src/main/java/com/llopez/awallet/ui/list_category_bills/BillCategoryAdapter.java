@@ -40,6 +40,12 @@ public class BillCategoryAdapter extends FirestoreRecyclerAdapter<BillCategory, 
         holder.viewColor.setBackgroundColor(android.graphics.Color.parseColor(category.getColor()));
     }
 
+    @Override
+    public void onDataChanged() {
+        super.onDataChanged();
+        listener.showEmptyMessage(getItemCount() == 0);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDateKey, tvDateValue;
         Button btnUpdate, btnDelete;
@@ -59,6 +65,7 @@ public class BillCategoryAdapter extends FirestoreRecyclerAdapter<BillCategory, 
     interface BillCategoryAdapterListener {
         void onEditBillCategory(BillCategory category);
         void onDeleteBillCategory(BillCategory category);
+        void showEmptyMessage(boolean visible);
     }
 }
 

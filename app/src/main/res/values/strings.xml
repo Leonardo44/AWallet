@@ -42,4 +42,6 @@
     <string name="login_fragment_success">Espere un momento… lo estamos redirigiendo</string>
 
     <string name="bill_category_item_list">Fecha de creación:</string>
+
+    <string name="empty_list_message">No hay datos por mostrar</string>
 </resources>

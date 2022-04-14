@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +26,7 @@ import com.llopez.awallet.utilities.GetDataStatus;
 public class EarningCategoryListFragment extends Fragment implements EarningCategoryAdapter.EarningCategoryAdapterListener {
     private RecyclerView rvEarningCategory;
     private FloatingActionButton btnAdd;
+    private TextView emptyMessage;
 
     private EarningCategoryAdapter adapter;
     private EarningCategoryListViewModel viewModel;
@@ -44,6 +46,7 @@ public class EarningCategoryListFragment extends Fragment implements EarningCate
         View layout =  inflater.inflate(R.layout.fragment_earning_category_list, container, false);
         rvEarningCategory = layout.findViewById(R.id.rvEarningCategory);
         btnAdd = layout.findViewById(R.id.btnAddEarningCategory);
+        emptyMessage = layout.findViewById(R.id.emptyMessage);
 
         btnAdd.setOnClickListener(v -> moveToAddCreateEarningFragment());
 
@@ -97,5 +100,14 @@ public class EarningCategoryListFragment extends Fragment implements EarningCate
 
     @Override
     public void onDeleteEarningCategory(EarningCategory category) {
+    }
+
+    @Override
+    public void showEmptyMessage(boolean visible) {
+        if (visible) {
+            emptyMessage.setVisibility(View.VISIBLE);
+        } else {
+            emptyMessage.setVisibility(View.GONE);
+        }
     }
 }

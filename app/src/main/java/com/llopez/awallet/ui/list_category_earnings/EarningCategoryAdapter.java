@@ -37,6 +37,12 @@ public class EarningCategoryAdapter extends FirestoreRecyclerAdapter<EarningCate
         holder.viewColor.setBackgroundColor(android.graphics.Color.parseColor(category.getColor()));
     }
 
+    @Override
+    public void onDataChanged() {
+        super.onDataChanged();
+        listener.showEmptyMessage(getItemCount() == 0);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDateKey, tvDateValue;
         Button btnUpdate, btnDelete;
@@ -56,5 +62,6 @@ public class EarningCategoryAdapter extends FirestoreRecyclerAdapter<EarningCate
     interface EarningCategoryAdapterListener {
         void onEditEarningCategory(EarningCategory category);
         void onDeleteEarningCategory(EarningCategory category);
+        void showEmptyMessage(boolean visible);
     }
 }

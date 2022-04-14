@@ -1,5 +1,6 @@
 package com.llopez.awallet.ui.list_category_bills;
 
+import android.opengl.Visibility;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,6 +27,7 @@ import com.llopez.awallet.utilities.GetDataStatus;
 public class BillCategoryListFragment extends Fragment implements BillCategoryAdapter.BillCategoryAdapterListener {
     private RecyclerView rvBillCategory;
     private FloatingActionButton btnAdd;
+    private TextView emptyMessage;
 
     private BillCategoryAdapter adapter;
     private BillCategoryListViewModel viewModel;
@@ -44,6 +48,7 @@ public class BillCategoryListFragment extends Fragment implements BillCategoryAd
 
         rvBillCategory = layout.findViewById(R.id.rvBillCategory);
         btnAdd = layout.findViewById(R.id.btnAddBillCategory);
+        emptyMessage = layout.findViewById(R.id.emptyMessage);
 
         rvBillCategory.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -96,5 +101,14 @@ public class BillCategoryListFragment extends Fragment implements BillCategoryAd
 
     @Override
     public void onDeleteBillCategory(BillCategory category) {
+    }
+
+    @Override
+    public void showEmptyMessage(boolean visible) {
+        if (visible) {
+            emptyMessage.setVisibility(View.VISIBLE);
+        } else {
+            emptyMessage.setVisibility(View.GONE);
+        }
     }
 }
