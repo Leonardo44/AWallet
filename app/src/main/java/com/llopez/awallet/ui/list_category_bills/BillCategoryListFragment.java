@@ -91,7 +91,10 @@ public class BillCategoryListFragment extends Fragment implements BillCategoryAd
     }
 
     @Override
-    public void onBillCategorySelected(BillCategory category) {
+    public void onEditBillCategory(BillCategory category) {
+    }
 
+    @Override
+    public void onDeleteBillCategory(BillCategory category) {
     }
 }

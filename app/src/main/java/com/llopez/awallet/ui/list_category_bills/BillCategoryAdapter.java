@@ -57,7 +57,8 @@ public class BillCategoryAdapter extends FirestoreRecyclerAdapter<BillCategory, 
     }
 
     interface BillCategoryAdapterListener {
-        void onBillCategorySelected(BillCategory category);
+        void onEditBillCategory(BillCategory category);
+        void onDeleteBillCategory(BillCategory category);
     }
 }
 
