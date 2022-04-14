@@ -19,9 +19,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavController navController;
@@ -29,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private NavigationView navView;
+    private TextView userName;
+    private TextView userEmail;
+    private ShapeableImageView userImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         navView = findViewById(R.id.nav_view);
+        userImageView = navView.getHeaderView(0).findViewById(R.id.nav_header_user_image);
+        userName = navView.getHeaderView(0).findViewById(R.id.nav_header_name);
+        userEmail = navView.getHeaderView(0).findViewById(R.id.nav_header_email);
 
         final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
@@ -47,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         navView.setNavigationItemSelectedListener(this::onNavigationItemSelected);
+
+        loadUserData();
     }
 
     @Override
@@ -62,6 +76,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+    }
+
+    private void loadUserData() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user != null){
+            userName.setText(user.getDisplayName());
+            userEmail.setText(user.getEmail());
+
+            if(user.getPhotoUrl() != null){
+                Picasso.get().load(user.getPhotoUrl()).into(userImageView);
+            }else {
+                userImageView.setImageResource(R.drawable.ic_baseline_person_24);
+            }
+        }
     }
 
     private void onDestinationChanged(@NonNull NavController controller,
