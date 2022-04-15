@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,9 +19,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.llopez.awallet.model.EarningCategory;
 import com.llopez.awallet.ui.add_bill.AddBillViewModel;
 import com.llopez.awallet.ui.add_bill.AddBillViewModelFactory;
 import com.llopez.awallet.utilities.BillCategoryAdapter;
+import com.llopez.awallet.utilities.Color;
 import com.llopez.awallet.utilities.EarningCategoryAdapter;
 import com.llopez.awallet.utilities.GetDataStatus;
 import com.llopez.awallet.utilities.SendDataStatus;
@@ -36,6 +39,7 @@ public class AddEarningFragment extends Fragment {
     private Spinner categorySpinner;
 
     private AddEarningViewModel viewModel;
+    private EarningCategory categorySelected;
 
     public AddEarningFragment() { }
 
@@ -47,10 +51,16 @@ public class AddEarningFragment extends Fragment {
         if(!(Validations.IsValidString(earningName))){
             Toast.makeText(getActivity(), R.string.fragment_add_earning_name_error, Toast.LENGTH_LONG).show();
         }else{
-            if(!(Validations.IsValidString(earningPrice)) || !(Validations.IsNumeric(earningPrice)) || !(Validations.IsNumberGreaterThan(earningPrice, 0))){
+            try {
+                Double earningAmount = Double.parseDouble(earningPrice);
+
+                if (earningAmount > 0) {
+                    viewModel.createEarning(categorySelected, earningName, earningAmount, earningDescription);
+                } else {
+                    Toast.makeText(getActivity(), R.string.fragment_add_earning_price_error, Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
                 Toast.makeText(getActivity(), R.string.fragment_add_earning_price_error, Toast.LENGTH_LONG).show();
-            }else{
-                
             }
         }
     }
@@ -74,6 +84,18 @@ public class AddEarningFragment extends Fragment {
 
         btnAddEarning.setOnClickListener(v -> {
             createOrUpdateEarning();
+        });
+
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                EarningCategory category = (EarningCategory) parent.getItemAtPosition(position);
+                categorySelected = category;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         final Observer<GetDataStatus> getDataStatusObserver = newValue -> {
