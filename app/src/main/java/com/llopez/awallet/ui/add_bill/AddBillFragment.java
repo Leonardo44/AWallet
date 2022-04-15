@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.llopez.awallet.model.BillCategory;
+import com.llopez.awallet.model.EarningCategory;
 import com.llopez.awallet.utilities.BillCategoryAdapter;
 import com.llopez.awallet.utilities.GetDataStatus;
 import com.llopez.awallet.utilities.SendDataStatus;
@@ -31,6 +34,7 @@ public class AddBillFragment extends Fragment {
     private Spinner categorySpinner;
 
     private AddBillViewModel viewModel;
+    private BillCategory categorySelected;
 
     public AddBillFragment() { }
 
@@ -42,10 +46,16 @@ public class AddBillFragment extends Fragment {
         if(!(Validations.IsValidString(billName))){
             Toast.makeText(getActivity(), R.string.fragment_add_bill_title_error, Toast.LENGTH_LONG).show();
         }else{
-            if(!(Validations.IsValidString(billPrice)) || !(Validations.IsNumeric(billPrice)) || !(Validations.IsNumberGreaterThan(billPrice, 0))){
-                Toast.makeText(getActivity(), R.string.fragment_add_bill_price_error, Toast.LENGTH_LONG).show();
-            } else{
+            try {
+                Double billAmount = Double.parseDouble(billPrice);
 
+                if (billAmount > 0) {
+                    viewModel.createBill(categorySelected, billName, billAmount, billDescription);
+                } else {
+                    Toast.makeText(getActivity(), R.string.fragment_add_earning_price_error, Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), R.string.fragment_add_earning_price_error, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -69,6 +79,18 @@ public class AddBillFragment extends Fragment {
 
         btnAddBill.setOnClickListener(v -> {
             createOrUpdateBill();
+        });
+
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                BillCategory category = (BillCategory) parent.getItemAtPosition(position);
+                categorySelected = category;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         final Observer<GetDataStatus> getDataStatusObserver = newValue -> {
