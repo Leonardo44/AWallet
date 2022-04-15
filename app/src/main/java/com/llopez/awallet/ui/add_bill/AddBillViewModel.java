@@ -6,16 +6,21 @@ import androidx.lifecycle.ViewModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.llopez.awallet.model.BillCategory;
+import com.llopez.awallet.model.EarningCategory;
 import com.llopez.awallet.utilities.GetDataStatus;
 import com.llopez.awallet.utilities.SendDataStatus;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AddBillViewModel extends ViewModel {
     private FirebaseFirestore firestore;
@@ -70,7 +75,25 @@ public class AddBillViewModel extends ViewModel {
                 });
     }
 
-    public void createBill() {
+    public void createBill(BillCategory category, String name, Double amount, String description) {
+        sendDataStatus.setValue(SendDataStatus.LOADING);
 
+        Map<String, Object> earning = new HashMap<>();
+        earning.put("name", name);
+        earning.put("amount", amount);
+        earning.put("description", description);
+        earning.put("createdAt", dateFormat.format(new Date()));
+
+        DocumentReference userDataReference = firestore.collection("bill_category_"+ user.getEmail() +"").document(category.getName());
+
+        userDataReference
+                .collection("bills")
+                .add(earning)
+                .addOnSuccessListener(documentReference -> {
+                    sendDataStatus.setValue(SendDataStatus.SUCCESS);
+                })
+                .addOnFailureListener(e -> {
+                    sendDataStatus.setValue(SendDataStatus.ERROR);
+                });
     }
 }
