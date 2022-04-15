@@ -52,22 +52,7 @@ public class ListBillsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Integer[] dataSet = new Integer[10];
-        dataSet[0] = 0;
-        dataSet[1] = 1;
-        dataSet[2] = 2;
-        dataSet[3] = 3;
-        dataSet[4] = 4;
-        dataSet[5] = 5;
-        dataSet[6] = 6;
-        dataSet[7] = 7;
-        dataSet[8] = 8;
-        dataSet[9] = 9;
 
-        rvBills.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        billsAdapter = new BillsAdapter(dataSet);
-        rvBills.setAdapter(billsAdapter);
     }
 
     private void moveToAddBillFragment() {

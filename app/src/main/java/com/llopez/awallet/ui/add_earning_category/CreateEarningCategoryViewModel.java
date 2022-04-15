@@ -43,7 +43,8 @@ public class CreateEarningCategoryViewModel extends ViewModel {
         CollectionReference userDataReference = firestore.collection("earning_category_"+ user.getEmail() +"");
 
         userDataReference
-                .add(category)
+                .document(name)
+                .set(category)
                 .addOnSuccessListener(documentReference -> {
                     dataStatus.setValue(SendDataStatus.SUCCESS);
                 })

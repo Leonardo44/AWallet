@@ -45,7 +45,9 @@ public class CreateBillCategoryViewModel extends ViewModel {
 
         CollectionReference userDataReference = firestore.collection("bill_category_"+ user.getEmail() +"");
 
-        userDataReference.add(category)
+        userDataReference
+                .document(name)
+                .set(category)
                 .addOnSuccessListener(documentReference -> {
                     dataStatus.setValue(SendDataStatus.SUCCESS);
                 })
