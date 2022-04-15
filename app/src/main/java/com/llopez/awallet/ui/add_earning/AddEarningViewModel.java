@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.llopez.awallet.model.BillCategory;
 import com.llopez.awallet.model.EarningCategory;
@@ -12,6 +14,9 @@ import com.llopez.awallet.utilities.SendDataStatus;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddEarningViewModel extends ViewModel {
     private FirebaseFirestore firestore;
@@ -66,7 +71,25 @@ public class AddEarningViewModel extends ViewModel {
                 });
     }
 
-    public void createEarning() {
+    public void createEarning(EarningCategory category, String name, Double amount, String description) {
+        sendDataStatus.setValue(SendDataStatus.LOADING);
 
+        Map<String, Object> earning = new HashMap<>();
+        earning.put("name", name);
+        earning.put("amount", amount);
+        earning.put("description", description);
+        earning.put("createdAt", dateFormat.format(new Date()));
+
+        DocumentReference userDataReference = firestore.collection("earning_category_"+ user.getEmail() +"").document(category.getName());
+
+        userDataReference
+                .collection("earnings")
+                .add(earning)
+                .addOnSuccessListener(documentReference -> {
+                    sendDataStatus.setValue(SendDataStatus.SUCCESS);
+                })
+                .addOnFailureListener(e -> {
+                    sendDataStatus.setValue(SendDataStatus.ERROR);
+                });
     }
 }
