@@ -29,6 +29,7 @@
     <string name="menu_expenses">Mis egresos</string>
     <string name="menu_earnings">Mis ingresos</string>
     <string name="menu_home">Inicio</string>
+    <string name="menu_logout">Cerrar sesión</string>
 
     <string name="fragment_add_bill_title">Ingresar nombre de egreso</string>
     <string name="fragment_add_bill_price">Ingresar monto egresado</string>
@@ -55,4 +56,16 @@
     <string name="bill_category_item_list">Fecha de creación:</string>
 
     <string name="empty_list_message">No hay datos por mostrar</string>
+
+    <string name="on_boarding_title_one">Bienvendi@</string>
+    <string name="on_boarding_title_two">Categorías</string>
+    <string name="on_boarding_title_three">Ingresos</string>
+    <string name="on_boarding_title_four">Gastos</string>
+    <string name="on_boarding_title_five">Gráficos estadísticos</string>
+    <string name="on_boarding_content_one">Muchas gracias por unirte a nuestra aplicación, te ayudaremos a encontrar tu equilibrio financiero</string>
+    <string name="on_boarding_content_two">Podrás clasificar tus ingresos y gastos para tener un mayor control de tu dinero actual</string>
+    <string name="on_boarding_content_three">Es prácticamente el dinero activo que tienes en tus cuentas de ahorros, crédito y préstamos</string>
+    <string name="on_boarding_content_four">Son todas los pasivos(deudas) que ya has pagado o posiblemente en un futuro</string>
+    <string name="on_boarding_content_five">Visualmente se mostrarán gráficos para observar tus movimientos financieros de manera general y específica</string>
+    <string name="on_boarding_start">Comenzar</string>
 </resources>

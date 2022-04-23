@@ -22,4 +22,12 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <array name="array_background_on_boarding">
+        <item>@color/on_boarding_background_one</item>
+        <item>@color/on_boarding_background_two</item>
+        <item>@color/on_boarding_background_three</item>
+        <item>@color/on_boarding_background_four</item>
+        <item>@color/on_boarding_background_five</item>
+    </array>
 </resources>

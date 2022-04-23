@@ -13,6 +13,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -140,6 +142,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.login_fragment:
                 toolbar.setVisibility(View.GONE);
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                return true;
+            case R.id.logout_btn:
+                SharedPreferences preferences = getSharedPreferences("credential", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("isLogged", false);
+                editor.apply();
+                navController.navigate(R.id.splashFragment);
+
                 return true;
         }
         return false;

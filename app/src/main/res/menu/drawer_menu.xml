@@ -4,18 +4,27 @@
         <item
             android:id="@+id/menu_home"
             android:checked="true"
+            android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/menu_list_bills"
+            android:icon="@drawable/ic_baseline_money_off_24"
             android:title="@string/menu_expenses" />
         <item
             android:id="@+id/menu_list_earnings"
+            android:icon="@drawable/ic_baseline_attach_money_24"
             android:title="@string/menu_earnings" />
         <item
             android:id="@+id/menu_category_expenses"
+            android:icon="@drawable/ic_baseline_payment_24"
             android:title="@string/menu_category_expenses" />
         <item
             android:id="@+id/menu_category_earnings"
+            android:icon="@drawable/ic_baseline_payment_24"
             android:title="@string/menu_category_earnings" />
+        <item
+            android:id="@+id/logout_btn"
+            android:icon="@drawable/ic_baseline_login_24"
+            android:title="@string/menu_logout" />
     </group>
 </menu>

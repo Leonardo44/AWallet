@@ -25,4 +25,10 @@
     <color name="category_sixth_color">#EF280F</color>
     <color name="category_seventh_color">#808080</color>
     <color name="category_eighth_color">#EFC12D</color>
+
+    <color name="on_boarding_background_one">#036564</color>
+    <color name="on_boarding_background_two">#1b262c</color>
+    <color name="on_boarding_background_three">#0f4c75</color>
+    <color name="on_boarding_background_four">#2b2e4a</color>
+    <color name="on_boarding_background_five">#693c72</color>
 </resources>

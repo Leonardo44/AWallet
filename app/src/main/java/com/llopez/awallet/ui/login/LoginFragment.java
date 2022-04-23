@@ -124,6 +124,6 @@ public class LoginFragment extends Fragment {
 
         ((MainActivity)getActivity()).loadUserData();
 
-        NavHostFragment.findNavController(this).navigate(R.id.listBillsFragment);
+        NavHostFragment.findNavController(this).navigate(R.id.homeFragment);
     }
 }
