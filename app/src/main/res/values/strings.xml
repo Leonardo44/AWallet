@@ -30,6 +30,7 @@
     <string name="menu_earnings">Mis ingresos</string>
     <string name="menu_home">Inicio</string>
     <string name="menu_logout">Cerrar sesión</string>
+    <string name="setting_section">Configuración</string>
 
     <string name="fragment_add_bill_title">Ingresar nombre de egreso</string>
     <string name="fragment_add_bill_price">Ingresar monto egresado</string>
