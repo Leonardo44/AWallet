@@ -5,27 +5,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.llopez.awallet.R;
+import com.llopez.awallet.model.BillObject;
+
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class BillsAdapter  extends RecyclerView.Adapter<BillsAdapter.ViewHolder> {
-    private Integer[] localDataSet;
+    private List<BillObject> localDataSet;
+    private BillsAdapterAdapterListener listener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        public final TextView tvValue;
+        public final TextView tvBillItemCategory;
+        public final View viewIdentifierBillItem;
+        public final TextView tvBillItemCreatedAtTitle;
+        public final TextView tvBillItemCreatedAtValue;
+        public final TextView tvBillItemUpdatedAtTitle;
+        public final TextView tvBillItemUpdatedAtValue;
+        public final TextView tvBillItemDescription;
 
         public ViewHolder(View view) {
             super(view);
-            textView = view.findViewById(R.id.tvBillItemValue);
+            tvValue = view.findViewById(R.id.tvBillItemValue);
+            tvBillItemCategory = view.findViewById(R.id.tvBillItemCategory);
+            viewIdentifierBillItem = view.findViewById(R.id.viewIdentifierBillItem);
+            tvBillItemCreatedAtTitle = view.findViewById(R.id.tvBillItemCreatedAtTitle);
+            tvBillItemCreatedAtValue = view.findViewById(R.id.tvBillItemCreatedAtValue);
+            tvBillItemUpdatedAtTitle = view.findViewById(R.id.tvBillItemUpdatedAtTitle);
+            tvBillItemUpdatedAtValue = view.findViewById(R.id.tvBillItemUpdatedAtValue);
+            tvBillItemDescription = view.findViewById(R.id.tvBillItemDescription);
         }
     }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
-    public BillsAdapter(Integer[] dataSet) {
+    public BillsAdapter(List<BillObject> dataSet, BillsAdapterAdapterListener listener) {
         localDataSet = dataSet;
     }
 
@@ -37,12 +50,23 @@ public class BillsAdapter  extends RecyclerView.Adapter<BillsAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
+        viewHolder.tvValue.setText("$" + localDataSet.get(position).getAmount() + "");
+        viewHolder.tvBillItemCategory.setText(localDataSet.get(position).getCategory().getName());
+        viewHolder.viewIdentifierBillItem.setBackgroundColor(android.graphics.Color.parseColor(localDataSet.get(position).getCategory().getColor()));
+        viewHolder.tvBillItemCreatedAtTitle.setText(R.string.item_list_name_object);
+        viewHolder.tvBillItemCreatedAtValue.setText(localDataSet.get(position).getName());
+        viewHolder.tvBillItemUpdatedAtTitle.setText(R.string.item_list_date_object);
+        viewHolder.tvBillItemUpdatedAtValue.setText(localDataSet.get(position).getCreatedAt());
+        viewHolder.tvBillItemDescription.setText(localDataSet.get(position).getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return localDataSet.size();
+    }
+
+    interface BillsAdapterAdapterListener {
+        void onEditBill(BillObject bill);
+        void onDeleteBill(BillObject bill);
     }
 }
