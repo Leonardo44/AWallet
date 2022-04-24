@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,6 +126,7 @@ public class AddEarningFragment extends Fragment {
                 case ERROR:
                     btnAddEarning.setEnabled(true);
                 case SUCCESS:
+                    successCreateToast();
                     btnAddEarning.setEnabled(true);
                 case NOT_INTERNET:
                     btnAddEarning.setEnabled(true);
@@ -141,5 +143,10 @@ public class AddEarningFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel.loadData();
+    }
+
+    private void successCreateToast() {
+        Toast.makeText(getActivity(), R.string.success_add_data_message, Toast.LENGTH_LONG).show();
+        NavHostFragment.findNavController(this).navigate(R.id.listEarningsFragment);
     }
 }

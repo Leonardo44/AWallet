@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +79,7 @@ public class CreateEarningCategoryFragment extends Fragment {
                 case ERROR:
                     btnCreateCategory.setEnabled(true);
                 case SUCCESS:
+                    successCreateToast();
                     btnCreateCategory.setEnabled(true);
                 case NOT_INTERNET:
                     btnCreateCategory.setEnabled(true);
@@ -95,5 +97,10 @@ public class CreateEarningCategoryFragment extends Fragment {
         }else{
             Toast.makeText(getActivity(), R.string.fragment_add_earning_category_name_error, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void successCreateToast() {
+        Toast.makeText(getActivity(), R.string.success_add_data_message, Toast.LENGTH_LONG).show();
+        NavHostFragment.findNavController(this).navigate(R.id.earningCategoryListFragment);
     }
 }

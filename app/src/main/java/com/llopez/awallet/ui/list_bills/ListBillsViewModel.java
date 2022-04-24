@@ -18,10 +18,14 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.llopez.awallet.model.BillCategory;
 import com.llopez.awallet.model.BillObject;
+import com.llopez.awallet.model.EarningObject;
 import com.llopez.awallet.utilities.GetDataStatus;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class ListBillsViewModel extends ViewModel {
@@ -47,7 +51,9 @@ public class ListBillsViewModel extends ViewModel {
     public void loadDataFromService() {
         dataStatus.setValue(GetDataStatus.LOADING);
 
+        billsList.clear();
         firestore.collection("bill_category_"+ user.getEmail() +"")
+                .orderBy("createdAt")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -65,6 +71,7 @@ public class ListBillsViewModel extends ViewModel {
                                 firestore.collection("bill_category_" + user.getEmail() + "")
                                         .document(c.getName())
                                         .collection("bills")
+                                        .orderBy("createdAt", Query.Direction.DESCENDING)
                                         .get()
                                         .addOnCompleteListener(t -> {
                                             if (t.isSuccessful()) {
@@ -74,6 +81,7 @@ public class ListBillsViewModel extends ViewModel {
                                                 }
 
                                                 if (categoryList.get(categoryList.size() - 1) == c) {
+                                                    Collections.sort(billsList, (o1, o2) -> o2.getCreatedAt().compareTo(o1.getCreatedAt()));
                                                     dataStatus.setValue(GetDataStatus.SUCCESS);
                                                 }
                                             }

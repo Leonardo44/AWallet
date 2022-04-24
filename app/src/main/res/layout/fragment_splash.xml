@@ -5,4 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_secondary"
-    tools:context=".ui.splash.SplashFragment"/>
+    tools:context=".ui.splash.SplashFragment">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:src="@drawable/splash_screen_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/hello_blank_fragment" />
+</androidx.constraintlayout.widget.ConstraintLayout>
