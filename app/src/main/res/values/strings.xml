@@ -69,4 +69,7 @@
     <string name="on_boarding_content_four">Son todas los pasivos(deudas) que ya has pagado o posiblemente en un futuro</string>
     <string name="on_boarding_content_five">Visualmente se mostrarán gráficos para observar tus movimientos financieros de manera general y específica</string>
     <string name="on_boarding_start">Comenzar</string>
+
+    <string name="item_list_name_object">Nombre:</string>
+    <string name="item_list_date_object">Fecha de creación:</string>
 </resources>

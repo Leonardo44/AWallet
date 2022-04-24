@@ -82,13 +82,17 @@ public class BillCategoryListFragment extends Fragment implements BillCategoryAd
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        if (adapter != null) {
+            adapter.startListening();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+        if (adapter != null) {
+            adapter.stopListening();
+        }
     }
 
     private void moveToAddCreateBillFragment() {
