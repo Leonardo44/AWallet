@@ -105,7 +105,7 @@ El siguiente enlace se muestra el manual técnico de la aplicación [aquí]()
 
 ## Funcionamiento - Video en drive ##
 
-[![Watch the video](documentation/video.PNG)]()
+[aquí]()
 
 ## Desarrolladores ##
 
