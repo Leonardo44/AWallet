@@ -72,4 +72,8 @@
 
     <string name="item_list_name_object">Nombre:</string>
     <string name="item_list_date_object">Fecha de creación:</string>
+
+    <string name="login_title">Estamos muy felices de verte por acá</string>
+    <string name="login_scubtitle">Manejamos tus datos de finanzas con seguridad</string>
+    <string name="login_contet">Inicia sesión fácilmente con tu cuenta de Google.</string>
 </resources>
