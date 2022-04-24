@@ -9,13 +9,13 @@ public class EarningObject {
     private Double amount;
     private String description;
     private String createdAt;
-    private BillCategory category;
+    private EarningCategory category;
 
     public EarningObject(){
 
     }
 
-    public EarningObject(BillCategory category, String name, Double amount, String description, String createdAt){
+    public EarningObject(EarningCategory category, String name, Double amount, String description, String createdAt){
         this.category = category;
         this.name = name;
         this.amount = amount;
@@ -47,10 +47,10 @@ public class EarningObject {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
-    public BillCategory getCategory() {
+    public EarningCategory getCategory() {
         return category;
     }
-    public void setCategory(BillCategory category) {
+    public void setCategory(EarningCategory category) {
         this.category = category;
     }
 
