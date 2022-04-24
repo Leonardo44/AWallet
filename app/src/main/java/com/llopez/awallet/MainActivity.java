@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void onDestinationChanged(@NonNull NavController controller,
                                       @NonNull NavDestination destination, @Nullable Bundle arguments) {
-        if (destination.getId() == R.id.login_fragment) {
-            toolbar.setVisibility(View.GONE);
+        if (destination.getId() == R.id.loginFragment) {
+            toolbar.setVisibility(View.VISIBLE);
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else if (destination.getId() == R.id.splashFragment) {
             toolbar.setVisibility(View.GONE);
@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         }
 
-        if (destination.getId() == R.id.addBillFragment) {
-
+        if (destination.getId() == R.id.addBillFragment || destination.getId() == R.id.addEarningFragment || destination.getId() == R.id.createBillCategoryFragment || destination.getId() == R.id.createEarningCategoryFragment) {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         }
 
         if (destination.getId() == R.id.listBillsFragment) {
