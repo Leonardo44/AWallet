@@ -101,7 +101,7 @@ El siguiente enlace se muestra el manual técnico de la aplicación [aquí](http
 
 ## Funcionamiento - Video en drive ##
 
-[aquí]()
+El video con el funcionamiento para la fase 2 del proyecto [aquí](https://drive.google.com/file/d/19_g1CY_QtB6rVfdyVQ_BSPlgBHoH2g_n/view?usp=sharing)
 
 ## Desarrolladores ##
 
