@@ -6,77 +6,77 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Vista en desarrollo</string>
 
-    <string name="btn_add">Ir</string>
-    <string name="btn_delete">Eliminar</string>
-    <string name="btn_edit">Editar</string>
+    <string name="btn_add">Go to</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_edit">Edit</string>
     <string name="monetary_value_default">$0.00</string>
 
-    <string name="bills_list_fragment">Lista de egreso</string>
-    <string name="add_bill_fragment">Agregar egreso</string>
-    <string name="fragment_list_earnings">Lista de ingresos</string>
-    <string name="add_earning_fragment">Agregar ingreso</string>
-    <string name="add_earning_category_fragment">Agregar categoría de ingreso</string>
-    <string name="add_bill_category_fragment">Agregar categoría de egreso</string>
+    <string name="bills_list_fragment">Bills list</string>
+    <string name="add_bill_fragment">Add bill</string>
+    <string name="fragment_list_earnings">Earnings list</string>
+    <string name="add_earning_fragment">Add earning</string>
+    <string name="add_earning_category_fragment">Add earning category</string>
+    <string name="add_bill_category_fragment">Add bill category</string>
 
-    <string name="fragment_add_earning_category_name_error">Ingrese un nombre de categoría válido</string>
+    <string name="fragment_add_earning_category_name_error">Enter a valid category name</string>
 
-    <string name="fragment_add_earning_name">Ingrese un nombre del ingreso</string>
-    <string name="fragment_add_earning_price">Ingresar monto del ingreso</string>
-    <string name="fragment_add_earning_name_error">Ingrese un nombre de ingreso válido</string>
-    <string name="fragment_add_earning_price_error">Ingrese un monto válido</string>
+    <string name="fragment_add_earning_name">Enter an earning name</string>
+    <string name="fragment_add_earning_price">Enter an earning amount</string>
+    <string name="fragment_add_earning_name_error">Enter a valid earning name</string>
+    <string name="fragment_add_earning_price_error">Enter a valid earning amount</string>
 
-    <string name="menu_category_expenses">Categoría de egresos</string>
-    <string name="menu_category_earnings">Categoría de ingresos</string>
-    <string name="menu_expenses">Mis egresos</string>
-    <string name="menu_earnings">Mis ingresos</string>
-    <string name="menu_home">Inicio</string>
-    <string name="menu_logout">Cerrar sesión</string>
-    <string name="setting_section">Configuración</string>
+    <string name="menu_category_expenses">Bills category</string>
+    <string name="menu_category_earnings">Earnings category</string>
+    <string name="menu_expenses">My bills</string>
+    <string name="menu_earnings">My earnings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_logout">Logout</string>
+    <string name="setting_section">Configuration</string>
 
-    <string name="fragment_add_bill_title">Ingresar nombre de egreso</string>
-    <string name="fragment_add_bill_price">Ingresar monto egresado</string>
-    <string name="fragment_add_bill_category">Seleccionar categoría</string>
-    <string name="fragment_add_bill_description">Ingresar descripción (Opcional)</string>
-    <string name="fragment_add_bill_button">Guardar</string>
-    <string name="fragment_add_bill_title_error">Ingrese un título válido</string>
-    <string name="fragment_add_bill_price_error">Ingrese un monto válido</string>
-    <string name="fragment_add_bill_category_error">Seleccione una categoría válida</string>
+    <string name="fragment_add_bill_title">Enter a bill name</string>
+    <string name="fragment_add_bill_price">Enter a bill amount</string>
+    <string name="fragment_add_bill_category">Select category</string>
+    <string name="fragment_add_bill_description">Enter a description (Optional)</string>
+    <string name="fragment_add_bill_button">Save</string>
+    <string name="fragment_add_bill_title_error">Enter a valid bill name</string>
+    <string name="fragment_add_bill_price_error">Enter a valid bill amount</string>
+    <string name="fragment_add_bill_category_error">Select a valid category</string>
 
-    <string name="fragment_create_bill_category_name">Ingresar nombre de categoría</string>
-    <string name="fragment_create_bill_category_color">Ingresar color de categoría</string>
-    <string name="fragment_create_bill_category_btn">Crear</string>
-    <string name="fragment_create_bill_category_name_error">Ingrese un nombre de categoría válido</string>
+    <string name="fragment_create_bill_category_name">Enter a category name</string>
+    <string name="fragment_create_bill_category_color">Enter a category color</string>
+    <string name="fragment_create_bill_category_btn">Create</string>
+    <string name="fragment_create_bill_category_name_error">Enter a valid category name</string>
 
-    <string name="fragment_create_earning_category_name">Ingresar nombre de categoría</string>
-    <string name="fragment_create_earning_category_color">Ingresar color de categoría</string>
-    <string name="fragment_create_earning_category_btn">Crear</string>
+    <string name="fragment_create_earning_category_name">Enter a category name</string>
+    <string name="fragment_create_earning_category_color">Enter a category color</string>
+    <string name="fragment_create_earning_category_btn">Create</string>
 
-    <string name="login_fragment_title">Bienvenido a AWallet</string>
-    <string name="login_fragment_error">Ha ocurrido un error en el proceso de login</string>
-    <string name="login_fragment_success">Espere un momento… lo estamos redirigiendo</string>
+    <string name="login_fragment_title">Welcome to AWallet</string>
+    <string name="login_fragment_error">An error ocurred in the login process</string>
+    <string name="login_fragment_success">Wait a moment… we are redirecting you</string>
 
-    <string name="bill_category_item_list">Fecha de creación:</string>
+    <string name="bill_category_item_list">Date of creation:</string>
 
-    <string name="empty_list_message">No hay datos por mostrar</string>
+    <string name="empty_list_message">No data to show</string>
 
-    <string name="on_boarding_title_one">Bienvendi@</string>
-    <string name="on_boarding_title_two">Categorías</string>
-    <string name="on_boarding_title_three">Ingresos</string>
-    <string name="on_boarding_title_four">Gastos</string>
-    <string name="on_boarding_title_five">Gráficos estadísticos</string>
-    <string name="on_boarding_content_one">Muchas gracias por unirte a nuestra aplicación, te ayudaremos a encontrar tu equilibrio financiero</string>
-    <string name="on_boarding_content_two">Podrás clasificar tus ingresos y gastos para tener un mayor control de tu dinero actual</string>
-    <string name="on_boarding_content_three">Es prácticamente el dinero activo que tienes en tus cuentas de ahorros, crédito y préstamos</string>
-    <string name="on_boarding_content_four">Son todas los pasivos(deudas) que ya has pagado o posiblemente en un futuro</string>
-    <string name="on_boarding_content_five">Visualmente se mostrarán gráficos para observar tus movimientos financieros de manera general y específica</string>
-    <string name="on_boarding_start">Comenzar</string>
+    <string name="on_boarding_title_one">Welcome</string>
+    <string name="on_boarding_title_two">Categories</string>
+    <string name="on_boarding_title_three">Earnings</string>
+    <string name="on_boarding_title_four">Bills</string>
+    <string name="on_boarding_title_five">Statistical graphs</string>
+    <string name="on_boarding_content_one">Thank you very much for joining our application, we will help you to find your financial balance.</string>
+    <string name="on_boarding_content_two">You will be able to classify your income and expenses to have a better control of your current money.</string>
+    <string name="on_boarding_content_three">It is practically the active money you have in your savings, credit and loan accounts.</string>
+    <string name="on_boarding_content_four">All liabilities (debts) that you have already paid or may pay in the future.</string>
+    <string name="on_boarding_content_five">Visually, graphs will be displayed to observe your financial movements in a general and specific way.</string>
+    <string name="on_boarding_start">Start</string>
 
-    <string name="item_list_name_object">Nombre:</string>
-    <string name="item_list_date_object">Fecha de creación:</string>
+    <string name="item_list_name_object">Name:</string>
+    <string name="item_list_date_object">Date of creation:</string>
 
-    <string name="login_title">Estamos muy felices de verte por acá</string>
-    <string name="login_scubtitle">Manejamos tus datos de finanzas con seguridad</string>
-    <string name="login_contet">Inicia sesión fácilmente con tu cuenta de Google.</string>
+    <string name="login_title">We are very happy to see you here</string>
+    <string name="login_scubtitle">We handle your financial data securely</string>
+    <string name="login_contet">Easily sign in with your Google account.</string>
 
-    <string name="success_add_data_message">Registro creado exitosamente</string>
+    <string name="success_add_data_message">Registration successfully created</string>
 </resources>
