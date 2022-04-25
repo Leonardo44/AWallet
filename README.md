@@ -93,15 +93,11 @@ El siguiente enlace se muestra el tablero de trabajo del equipo en figma [aquí]
 
 ## Manual de Usuario ##
 
-![Usuario](documentation/portada_manual.PNG "Manual de Usuario")
-
-El siguiente enlace se muestra el manual de usuario para la aplicación [aquí]()
+El siguiente enlace se muestra el manual de usuario para la aplicación [aquí](https://www.canva.com/design/DAE-WNPJzRQ/5UPhF08Cyb5OmlAZYViV3A/view?utm_content=DAE-WNPJzRQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Manual Técnico ##
 
-![Tecnico](documentation/portada_tecnico.PNG "Manual de Técnico")
-
-El siguiente enlace se muestra el manual técnico de la aplicación [aquí]()
+El siguiente enlace se muestra el manual técnico de la aplicación [aquí](https://www.canva.com/design/DAE-V6_5w9Y/wOUzRzgO8lkdRZKNHsMGqA/view?utm_content=DAE-V6_5w9Y&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Funcionamiento - Video en drive ##
 
