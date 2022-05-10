@@ -92,6 +92,9 @@ dependencies {
 
 El siguiente enlace se muestra el tablero de trabajo del equipo en figma [aquí](https://www.figma.com/file/xuDpHcuVH9y9lEAsUU3w8h/DSM---App)
 
+## Video publicitario ##
+El siguiente enlace muestra el video publicitario de AWallet [aquí](https://youtu.be/UGfqg-F53AU)
+
 ## Sitio Web - AWallet ##
 
 El siguiente enlace muestra la página web para publicitar nuestra aplicación [aquí](https://diegolem.github.io/sitio_service_fusion/)
