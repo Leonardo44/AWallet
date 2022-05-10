@@ -110,15 +110,17 @@ El siguiente enlace se muestra el manual técnico de la aplicación [aquí](http
 * López Cañas, Leonardo Elenilson                       LC171998    -  T03
 * Romero Quijano, Kevin Alegandro                       RQ172927    -  T03
 
+## <------ DESCARGAR APK ---------> ##
+
+https://drive.google.com/drive/folders/1gyfMTQbX99N700T9W-JxCNdqItjl5k0U?usp=sharing
+
 ## Licencias Creative Commons ##
 
 ![CC](https://co.creativecommons.net/wp-content/uploads/sites/27/2008/02/by-nc.png "CC-BY-NC")
 
 CC-BY-NC: permite distribuir y hacer cambios en la obra siempre y cuando se incluya el
 nombre del autor y la licencia. Sin embargo, no se permite su uso con fines comerciales.
-## <------ DESCARGAR APK ---------> ##
 
-https://drive.google.com/file/d/1YTwKoHSYGsb_hgXYrok9Egh5ioneAOiv/view?usp=sharing
 
 
 ## Otras Licencias ##
