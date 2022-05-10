@@ -72,7 +72,7 @@ public class HomeViewModel extends ViewModel {
                         List<BillCategory> categoryList = new ArrayList<>();
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            BillCategory category = new BillCategory(document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
+                            BillCategory category = new BillCategory(document.getString("name"), document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
                             categoryList.add(category);
                         }
 
@@ -113,7 +113,7 @@ public class HomeViewModel extends ViewModel {
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Timestamp timestamp = document.getTimestamp("createdAt");
-                            EarningCategory category = new EarningCategory(document.getString("name"), document.getString("color"), timestamp.toDate());
+                            EarningCategory category = new EarningCategory(document.getString("name"), document.getString("name"), document.getString("color"), timestamp.toDate());
                             categoryList.add(category);
                         }
 

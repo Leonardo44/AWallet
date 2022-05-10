@@ -48,6 +48,24 @@ public class ListBillsViewModel extends ViewModel {
         this.billsList = new ArrayList<>();
     }
 
+    public void deleteBill(String documentName) {
+        BillObject earning = billsList.stream()
+                .filter(e -> documentName.equals(e.getDocumentName()))
+                .findAny()
+                .orElse(null);
+        firestore.collection("bill_category_"+ user.getEmail() +"")
+                .document(earning.getCategory().getName())
+                .collection("bills")
+                .document(earning.getDocumentName())
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    loadDataFromService();
+                })
+                .addOnFailureListener(e -> {
+                    dataStatus.setValue(GetDataStatus.ERROR);
+                });
+    }
+
     public void loadDataFromService() {
         dataStatus.setValue(GetDataStatus.LOADING);
 
@@ -60,7 +78,7 @@ public class ListBillsViewModel extends ViewModel {
                         List<BillCategory> categoryList = new ArrayList<>();
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            BillCategory category = new BillCategory(document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
+                            BillCategory category = new BillCategory(document.getString("name"), document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
                             categoryList.add(category);
                         }
 
@@ -76,7 +94,7 @@ public class ListBillsViewModel extends ViewModel {
                                         .addOnCompleteListener(t -> {
                                             if (t.isSuccessful()) {
                                                 for (QueryDocumentSnapshot d : t.getResult()) {
-                                                    BillObject bill = new BillObject(c, d.getString("name"), d.getDouble("amount"), d.getString("description"), d.getDate("createdAt"));
+                                                    BillObject bill = new BillObject(c, d.getId(), d.getString("name"), d.getDouble("amount"), d.getString("description"), d.getDate("createdAt"));
                                                     billsList.add(bill);
                                                 }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -79,6 +80,19 @@ public class EarningCategoryListFragment extends Fragment implements EarningCate
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        MutableLiveData<String> documentEarningCategoryIdLiveData = NavHostFragment
+                .findNavController(this)
+                .getCurrentBackStackEntry()
+                .getSavedStateHandle()
+                .getLiveData("document_earning_category_id_delete");
+
+        documentEarningCategoryIdLiveData.observe(getViewLifecycleOwner(), s -> {
+            if (s != null) {
+                NavHostFragment.findNavController(this).popBackStack();
+                viewModel.deleteCategory(s);
+            }
+        });
+
         viewModel.loadDataFromService();
     }
 
@@ -104,6 +118,9 @@ public class EarningCategoryListFragment extends Fragment implements EarningCate
 
     @Override
     public void onDeleteEarningCategory(EarningCategory category) {
+        Bundle bundle = new Bundle();
+        bundle.putString("document_earning_category_id_delete", category.getName());
+        NavHostFragment.findNavController(this).navigate(R.id.itemDeleteEarningCategoryDialogFragment, bundle);
     }
 
     @Override

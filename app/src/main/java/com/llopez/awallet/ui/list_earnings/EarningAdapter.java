@@ -3,6 +3,7 @@ package com.llopez.awallet.ui.list_earnings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +29,8 @@ public class EarningAdapter extends RecyclerView.Adapter<EarningAdapter.ViewHold
         public final TextView tvBillItemUpdatedAtTitle;
         public final TextView tvBillItemUpdatedAtValue;
         public final TextView tvBillItemDescription;
+        public final Button btnUpdateEarningItem;
+        public final Button btnDeleteEarningItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -39,11 +42,14 @@ public class EarningAdapter extends RecyclerView.Adapter<EarningAdapter.ViewHold
             tvBillItemUpdatedAtTitle = view.findViewById(R.id.tvEarningItemUpdatedAtTitle);
             tvBillItemUpdatedAtValue = view.findViewById(R.id.tvEarningItemUpdatedAtValue);
             tvBillItemDescription = view.findViewById(R.id.tvEarningItemDescription);
+            btnUpdateEarningItem = view.findViewById(R.id.btnUpdateEarningItem);
+            btnDeleteEarningItem = view.findViewById(R.id.btnDeleteEarningItem);
         }
     }
 
     public EarningAdapter(List<EarningObject> dataSet, EarningAdapter.EarningAdapterAdapterListener listener) {
         localDataSet = dataSet;
+        this.listener = listener;
     }
 
     @Override
@@ -64,6 +70,12 @@ public class EarningAdapter extends RecyclerView.Adapter<EarningAdapter.ViewHold
         viewHolder.tvBillItemUpdatedAtTitle.setText(R.string.item_list_date_object);
         viewHolder.tvBillItemUpdatedAtValue.setText(createdAt);
         viewHolder.tvBillItemDescription.setText(localDataSet.get(position).getDescription());
+        viewHolder.btnDeleteEarningItem.setOnClickListener(v -> {
+            listener.onDeleteEarning(localDataSet.get(position));
+        });
+        viewHolder.btnUpdateEarningItem.setOnClickListener(v -> {
+            listener.onEditEarning(localDataSet.get(position));
+        });
     }
 
     @Override

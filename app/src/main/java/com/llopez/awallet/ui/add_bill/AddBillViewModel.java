@@ -65,7 +65,7 @@ public class AddBillViewModel extends ViewModel {
                             String name = queryDocumentSnapshots.getDocuments().get(i).getString("name");
                             String color = queryDocumentSnapshots.getDocuments().get(i).getString("color");
                             Timestamp createdAt = queryDocumentSnapshots.getDocuments().get(i).getTimestamp("createdAt");
-                            BillCategory category = new BillCategory(name, color, createdAt.toDate());
+                            BillCategory category = new BillCategory(name, name, color, createdAt.toDate());
 
                             list.add(category);
                         }

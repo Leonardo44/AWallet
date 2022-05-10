@@ -87,4 +87,22 @@
         android:name="com.llopez.awallet.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
+    <dialog
+        android:id="@+id/itemDeleteDialogFragment"
+        android:name="com.llopez.awallet.ui.dialogs.ItemDeleteEarningDialogFragment"
+        android:label="fragment_item_delete_dialog"
+        tools:layout="@layout/fragment_item_delete_dialog" />
+    <dialog
+        android:id="@+id/itemDeleteBillDialogFragment"
+        android:name="com.llopez.awallet.ui.dialogs.ItemDeleteBillDialogFragment"
+        android:label="ItemDeleteBillDialogFragment" />
+    <dialog
+        android:id="@+id/itemDeleteBillCategoryDialogFragment"
+        android:name="com.llopez.awallet.ui.dialogs.ItemDeleteBillCategoryDialogFragment"
+        android:label="ItemDeleteBillCategoryDialogFragment" />
+    <dialog
+        android:id="@+id/itemDeleteEarningCategoryDialogFragment"
+        android:name="com.llopez.awallet.ui.dialogs.ItemDeleteEarningCategoryDialogFragment"
+        android:label="ItemDeleteEarningCategoryDialogFragment" />
+
 </navigation>

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EarningObject {
+    private String documentName;
     private String name;
     private Double amount;
     private String description;
@@ -15,14 +16,20 @@ public class EarningObject {
 
     }
 
-    public EarningObject(EarningCategory category, String name, Double amount, String description, Date createdAt){
+    public EarningObject(EarningCategory category, String documentName, String name, Double amount, String description, Date createdAt){
         this.category = category;
+        this.documentName = documentName;
         this.name = name;
         this.amount = amount;
         this.description = description;
         this.createdAt = createdAt;
     }
-
+    public String getDocumentName() {
+        return documentName;
+    }
+    public void setDocumentName(String documentName) {
+        this.documentName = documentName;
+    }
     public String getName() {
         return name;
     }

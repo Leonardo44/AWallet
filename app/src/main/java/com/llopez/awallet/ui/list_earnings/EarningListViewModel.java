@@ -1,9 +1,12 @@
 package com.llopez.awallet.ui.list_earnings;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -38,6 +41,24 @@ public class EarningListViewModel extends ViewModel {
         this.earningsList = new ArrayList<>();
     }
 
+    public void deleteEarning(String documentName) {
+        EarningObject earning = earningsList.stream()
+                .filter(e -> documentName.equals(e.getDocumentName()))
+                .findAny()
+                .orElse(null);
+        firestore.collection("earning_category_"+ user.getEmail() +"")
+                .document(earning.getCategory().getName())
+                .collection("earnings")
+                .document(earning.getDocumentName())
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    loadDataFromService();
+                })
+                .addOnFailureListener(e -> {
+                    dataStatus.setValue(GetDataStatus.ERROR);
+                });
+    }
+
     public void loadDataFromService() {
         dataStatus.setValue(GetDataStatus.LOADING);
 
@@ -50,7 +71,7 @@ public class EarningListViewModel extends ViewModel {
                         List<EarningCategory> categoryList = new ArrayList<>();
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            EarningCategory category = new EarningCategory(document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
+                            EarningCategory category = new EarningCategory(document.getString("name"), document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
                             categoryList.add(category);
                         }
 
@@ -66,7 +87,7 @@ public class EarningListViewModel extends ViewModel {
                                         .addOnCompleteListener(t -> {
                                             if (t.isSuccessful()) {
                                                 for (QueryDocumentSnapshot d : t.getResult()) {
-                                                    EarningObject bill = new EarningObject(c, d.getString("name"), d.getDouble("amount"), d.getString("description"), d.getTimestamp("createdAt").toDate());
+                                                    EarningObject bill = new EarningObject(c, d.getId(), d.getString("name"), d.getDouble("amount"), d.getString("description"), d.getTimestamp("createdAt").toDate());
                                                     earningsList.add(bill);
                                                 }
 

@@ -13,6 +13,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.llopez.awallet.model.BillCategory;
+import com.llopez.awallet.model.EarningObject;
 import com.llopez.awallet.utilities.GetDataStatus;
 import com.llopez.awallet.utilities.SendDataStatus;
 
@@ -34,6 +35,17 @@ public class BillCategoryListViewModel extends ViewModel {
     public BillCategoryListViewModel(FirebaseUser user, FirebaseFirestore firestore) {
         this.user = user;
         this.firestore = firestore;
+    }
+
+    public void deleteCategory(String documentName) {
+        firestore.collection("bill_category_"+ user.getEmail() +"")
+                .document(documentName)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                })
+                .addOnFailureListener(e -> {
+                    dataStatus.setValue(GetDataStatus.ERROR);
+                });
     }
 
     public void loadDataFromService() {

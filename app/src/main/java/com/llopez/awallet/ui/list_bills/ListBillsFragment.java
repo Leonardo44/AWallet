@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -91,6 +92,19 @@ public class ListBillsFragment extends Fragment implements BillsAdapter.BillsAda
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        MutableLiveData<String> documentEarningIdLiveData = NavHostFragment
+                .findNavController(this)
+                .getCurrentBackStackEntry()
+                .getSavedStateHandle()
+                .getLiveData("document_bill_id_delete");
+
+        documentEarningIdLiveData.observe(getViewLifecycleOwner(), s -> {
+            if (s != null) {
+                NavHostFragment.findNavController(this).popBackStack();
+                viewModel.deleteBill(s);
+            }
+        });
+
         viewModel.loadDataFromService();
     }
 
@@ -114,6 +128,9 @@ public class ListBillsFragment extends Fragment implements BillsAdapter.BillsAda
 
     @Override
     public void onDeleteBill(BillObject bill) {
+        Bundle bundle = new Bundle();
+        bundle.putString("document_bill_id_delete", bill.getDocumentName());
+        NavHostFragment.findNavController(this).navigate(R.id.itemDeleteBillDialogFragment, bundle);
     }
 }
 

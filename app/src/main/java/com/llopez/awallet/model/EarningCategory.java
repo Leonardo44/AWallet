@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class EarningCategory {
+    private String documentName;
     private String name;
     private String color;
     private Date createdAt;
@@ -12,7 +13,8 @@ public class EarningCategory {
 
     }
 
-    public EarningCategory(String name, String color, Date createdAt){
+    public EarningCategory(String name, String documentName, String color, Date createdAt){
+        this.documentName = documentName;
         this.name = name;
         this.color = color;
         this.createdAt = createdAt;

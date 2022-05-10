@@ -62,7 +62,7 @@ public class AddEarningViewModel extends ViewModel {
                             String color = queryDocumentSnapshots.getDocuments().get(i).getString("color");
                             Timestamp timestamp = queryDocumentSnapshots.getDocuments().get(i).getTimestamp("createdAt");
 
-                            EarningCategory category = new EarningCategory(name, color, timestamp.toDate());
+                            EarningCategory category = new EarningCategory(name, name, color, timestamp.toDate());
 
                             list.add(category);
                         }

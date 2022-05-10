@@ -83,4 +83,8 @@
     <string name="home_fragment_title">Summary of the month </string>
     <string name="home_earning_title">Earnings</string>
     <string name="home_bills_title">Bills</string>
+
+    <string name="item_delete_dialog">Are you sure you want to remove this item?</string>
+    <string name="item_delete_dialog_option_one">Yes</string>
+    <string name="item_delete_dialog_option_two">No</string>
 </resources>

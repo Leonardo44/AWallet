@@ -39,6 +39,13 @@ public class EarningCategoryAdapter extends FirestoreRecyclerAdapter<EarningCate
         holder.tvDateKey.setText(R.string.bill_category_item_list);
         holder.tvDateValue.setText(createdAt);
         holder.viewColor.setBackgroundColor(android.graphics.Color.parseColor(category.getColor()));
+
+        holder.btnDelete.setOnClickListener(v -> {
+            listener.onDeleteEarningCategory(category);
+        });
+        holder.btnUpdate.setOnClickListener(v -> {
+            listener.onEditEarningCategory(category);
+        });
     }
 
     @Override

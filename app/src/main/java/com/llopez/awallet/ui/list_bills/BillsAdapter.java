@@ -3,6 +3,7 @@ package com.llopez.awallet.ui.list_bills;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import com.llopez.awallet.R;
 import com.llopez.awallet.model.BillObject;
@@ -25,6 +26,8 @@ public class BillsAdapter  extends RecyclerView.Adapter<BillsAdapter.ViewHolder>
         public final TextView tvBillItemUpdatedAtTitle;
         public final TextView tvBillItemUpdatedAtValue;
         public final TextView tvBillItemDescription;
+        public final Button btnDeleteBillItem;
+        public final Button btnUpdateBillItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -36,11 +39,14 @@ public class BillsAdapter  extends RecyclerView.Adapter<BillsAdapter.ViewHolder>
             tvBillItemUpdatedAtTitle = view.findViewById(R.id.tvBillItemUpdatedAtTitle);
             tvBillItemUpdatedAtValue = view.findViewById(R.id.tvBillItemUpdatedAtValue);
             tvBillItemDescription = view.findViewById(R.id.tvBillItemDescription);
+            btnDeleteBillItem = view.findViewById(R.id.btnDeleteBillItem);
+            btnUpdateBillItem = view.findViewById(R.id.btnUpdateBillItem);
         }
     }
 
     public BillsAdapter(List<BillObject> dataSet, BillsAdapterAdapterListener listener) {
         localDataSet = dataSet;
+        this.listener = listener;
     }
 
     @Override
@@ -61,6 +67,12 @@ public class BillsAdapter  extends RecyclerView.Adapter<BillsAdapter.ViewHolder>
         viewHolder.tvBillItemUpdatedAtTitle.setText(R.string.item_list_date_object);
         viewHolder.tvBillItemUpdatedAtValue.setText(createdAt);
         viewHolder.tvBillItemDescription.setText(localDataSet.get(position).getDescription());
+        viewHolder.btnDeleteBillItem.setOnClickListener(v -> {
+            listener.onDeleteBill(localDataSet.get(position));
+        });
+        viewHolder.btnUpdateBillItem.setOnClickListener(v -> {
+            listener.onEditBill(localDataSet.get(position));
+        });
     }
 
     @Override

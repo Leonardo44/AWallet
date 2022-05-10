@@ -82,4 +82,8 @@
     <string name="home_fragment_title">Resumen del mes de </string>
     <string name="home_earning_title">Ingresos</string>
     <string name="home_bills_title">Gastos</string>
+
+    <string name="item_delete_dialog">¿Estas seguro de eliminar este elemento?</string>
+    <string name="item_delete_dialog_option_one">Sí, eliminar</string>
+    <string name="item_delete_dialog_option_two">No</string>
 </resources>

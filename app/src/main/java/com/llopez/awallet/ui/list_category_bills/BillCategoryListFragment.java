@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -76,6 +77,18 @@ public class BillCategoryListFragment extends Fragment implements BillCategoryAd
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        MutableLiveData<String> documentBillCategoryIdLiveData = NavHostFragment
+                .findNavController(this)
+                .getCurrentBackStackEntry()
+                .getSavedStateHandle()
+                .getLiveData("document_bill_category_id_delete");
+
+        documentBillCategoryIdLiveData.observe(getViewLifecycleOwner(), s -> {
+            if (s != null) {
+                NavHostFragment.findNavController(this).popBackStack();
+                viewModel.deleteCategory(s);
+            }
+        });
         viewModel.loadDataFromService();
     }
 
@@ -105,6 +118,9 @@ public class BillCategoryListFragment extends Fragment implements BillCategoryAd
 
     @Override
     public void onDeleteBillCategory(BillCategory category) {
+        Bundle bundle = new Bundle();
+        bundle.putString("document_bill_category_id_delete", category.getName());
+        NavHostFragment.findNavController(this).navigate(R.id.itemDeleteBillCategoryDialogFragment, bundle);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.llopez.awallet.model;
 import java.util.Date;
 
 public class BillCategory {
+    private String documentName;
     private String name;
     private String color;
     private Date createdAt;
@@ -11,7 +12,8 @@ public class BillCategory {
 
     }
 
-    public BillCategory(String name, String color, Date createdAt){
+    public BillCategory(String documentName, String name, String color, Date createdAt){
+        this.documentName = documentName;
         this.name = name;
         this.color = color;
         this.createdAt = createdAt;

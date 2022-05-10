@@ -29,6 +29,17 @@ public class EarningCategoryListViewModel extends ViewModel  {
         this.firestore = firestore;
     }
 
+    public void deleteCategory(String documentName) {
+        firestore.collection("earning_category_"+ user.getEmail() +"")
+                .document(documentName)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                })
+                .addOnFailureListener(e -> {
+                    dataStatus.setValue(GetDataStatus.ERROR);
+                });
+    }
+
     public void loadDataFromService() {
         dataStatus.setValue(GetDataStatus.LOADING);
 

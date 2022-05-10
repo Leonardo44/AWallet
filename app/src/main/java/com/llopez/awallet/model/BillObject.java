@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BillObject {
+    private String documentName;
     private String name;
     private Double amount;
     private String description;
@@ -15,7 +16,8 @@ public class BillObject {
 
     }
 
-    public BillObject(BillCategory category, String name, Double amount, String description, Date createdAt){
+    public BillObject(BillCategory category, String documentName, String name, Double amount, String description, Date createdAt){
+        this.documentName = documentName;
         this.category = category;
         this.name = name;
         this.amount = amount;
@@ -23,6 +25,12 @@ public class BillObject {
         this.createdAt = createdAt;
     }
 
+    public String getDocumentName() {
+        return documentName;
+    }
+    public void setDocumentName(String documentName) {
+        this.documentName = documentName;
+    }
     public String getName() {
         return name;
     }
