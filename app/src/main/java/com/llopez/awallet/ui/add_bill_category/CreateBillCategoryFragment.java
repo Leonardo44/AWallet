@@ -35,6 +35,7 @@ public class CreateBillCategoryFragment extends Fragment {
     private CreateBillCategoryViewModel viewModel;
 
     private String hexColor;
+    private String colorSelected;
 
     public CreateBillCategoryFragment() {
     }
@@ -49,13 +50,18 @@ public class CreateBillCategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_create_bill_category, container, false);
+        boolean isEdit = getArguments().getBoolean("is_edit");
 
         categoryName = layout.findViewById(R.id.editTextBillCategoryName);
         spinnerColor = layout.findViewById(R.id.spinnerBillCategoryColor);
         btnCreateCategory = layout.findViewById(R.id.btnCreateBillCategory);
 
         btnCreateCategory.setOnClickListener(v -> {
-            createOrUpdateBillCategory();
+            if (isEdit) {
+                updateBillCategory();
+            } else {
+                createBillCategory();
+            }
         });
 
         ColorCategoryAdapter adapter = new ColorCategoryAdapter(getContext(), Color.CategoryColorList);
@@ -72,6 +78,21 @@ public class CreateBillCategoryFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        if (isEdit) {
+            categoryName.setText(getArguments().getString("category_name"));
+            colorSelected = getArguments().getString("category_color");
+        }
+
+        if (colorSelected != null) {
+            Color _color = Color.CategoryColorList.stream()
+                    .filter(e -> colorSelected.equals(getResources().getString(e.color)))
+                    .findAny()
+                    .orElse(null);
+            hexColor = getResources().getString(_color.color);
+
+            spinnerColor.setSelection(Color.CategoryColorList.indexOf(_color));
+        }
 
         final Observer<SendDataStatus> dataStatusObserver = newValue -> {
             switch (newValue) {
@@ -93,10 +114,19 @@ public class CreateBillCategoryFragment extends Fragment {
         return layout;
     }
 
-    private void createOrUpdateBillCategory() {
+    private void createBillCategory() {
         String categoryNameText = categoryName.getText().toString();
         if(Validations.IsValidString(categoryNameText)){
             viewModel.createCategory(categoryNameText, hexColor);
+        }else{
+            Toast.makeText(getActivity(), R.string.fragment_create_bill_category_name_error, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void updateBillCategory() {
+        String categoryNameText = categoryName.getText().toString();
+        if(Validations.IsValidString(categoryNameText)){
+            viewModel.updateCategory(getArguments().getString("category_name"), categoryNameText, hexColor);
         }else{
             Toast.makeText(getActivity(), R.string.fragment_create_bill_category_name_error, Toast.LENGTH_LONG).show();
         }

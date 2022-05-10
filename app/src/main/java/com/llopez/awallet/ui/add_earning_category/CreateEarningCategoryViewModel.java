@@ -52,4 +52,25 @@ public class CreateEarningCategoryViewModel extends ViewModel {
                     dataStatus.setValue(SendDataStatus.ERROR);
                 });
     }
+
+    public void updateCategory(String previousName, String name, String color) {
+        dataStatus.setValue(SendDataStatus.LOADING);
+
+        Map<String, Object> category = new HashMap<>();
+        category.put("name", name);
+        category.put("color", color);
+        category.put("createdAt", new Date());
+
+        CollectionReference userDataReference = firestore.collection("earning_category_"+ user.getEmail() +"");
+
+        userDataReference
+                .document(previousName)
+                .set(category)
+                .addOnSuccessListener(documentReference -> {
+                    dataStatus.setValue(SendDataStatus.SUCCESS);
+                })
+                .addOnFailureListener(e -> {
+                    dataStatus.setValue(SendDataStatus.ERROR);
+                });
+    }
 }

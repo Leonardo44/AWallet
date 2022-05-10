@@ -119,11 +119,22 @@ public class ListBillsFragment extends Fragment implements BillsAdapter.BillsAda
     }
 
     private void moveToAddBillFragment() {
-        NavHostFragment.findNavController(this).navigate(R.id.action_listBillsFragment_to_addBillFragment);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("is_edit", false);
+        NavHostFragment.findNavController(this).navigate(R.id.action_listBillsFragment_to_addBillFragment, bundle);
     }
 
     @Override
     public void onEditBill(BillObject bill) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("is_edit", true);
+        bundle.putString("category_name", bill.getCategory().getName());
+        bundle.putString("bill_document_name", bill.getDocumentName());
+        bundle.putString("bill_name", bill.getName());
+        bundle.putDouble("bill_amount", bill.getAmount());
+        bundle.putString("bill_description", bill.getDescription());
+
+        NavHostFragment.findNavController(this).navigate(R.id.action_listBillsFragment_to_addBillFragment, bundle);
     }
 
     @Override

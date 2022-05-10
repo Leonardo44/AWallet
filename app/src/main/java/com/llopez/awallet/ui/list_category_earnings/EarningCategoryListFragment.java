@@ -74,7 +74,9 @@ public class EarningCategoryListFragment extends Fragment implements EarningCate
     }
 
     private void moveToAddCreateEarningFragment() {
-        NavHostFragment.findNavController(this).navigate(R.id.action_earningCategoryListFragment_to_createEarningCategoryFragment);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("is_edit", false);
+        NavHostFragment.findNavController(this).navigate(R.id.action_earningCategoryListFragment_to_createEarningCategoryFragment, bundle);
     }
 
     @Override
@@ -114,6 +116,11 @@ public class EarningCategoryListFragment extends Fragment implements EarningCate
 
     @Override
     public void onEditEarningCategory(EarningCategory category) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("is_edit", true);
+        bundle.putString("category_name", category.getName());
+        bundle.putString("category_color", category.getColor());
+        NavHostFragment.findNavController(this).navigate(R.id.action_earningCategoryListFragment_to_createEarningCategoryFragment, bundle);
     }
 
     @Override

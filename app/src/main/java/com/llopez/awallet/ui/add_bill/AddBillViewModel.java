@@ -79,17 +79,40 @@ public class AddBillViewModel extends ViewModel {
     public void createBill(BillCategory category, String name, Double amount, String description) {
         sendDataStatus.setValue(SendDataStatus.LOADING);
 
-        Map<String, Object> earning = new HashMap<>();
-        earning.put("name", name);
-        earning.put("amount", amount);
-        earning.put("description", description);
-        earning.put("createdAt", new Date());
+        Map<String, Object> bill = new HashMap<>();
+        bill.put("name", name);
+        bill.put("amount", amount);
+        bill.put("description", description);
+        bill.put("createdAt", new Date());
 
         DocumentReference userDataReference = firestore.collection("bill_category_"+ user.getEmail() +"").document(category.getName());
 
         userDataReference
                 .collection("bills")
-                .add(earning)
+                .add(bill)
+                .addOnSuccessListener(documentReference -> {
+                    sendDataStatus.setValue(SendDataStatus.SUCCESS);
+                })
+                .addOnFailureListener(e -> {
+                    sendDataStatus.setValue(SendDataStatus.ERROR);
+                });
+    }
+
+    public void updateBill(BillCategory category, String documentName, String name, Double amount, String description) {
+        sendDataStatus.setValue(SendDataStatus.LOADING);
+
+        Map<String, Object> bill = new HashMap<>();
+        bill.put("name", name);
+        bill.put("amount", amount);
+        bill.put("description", description);
+        bill.put("createdAt", new Date());
+
+        DocumentReference userDataReference = firestore.collection("bill_category_"+ user.getEmail() +"").document(category.getName());
+
+        userDataReference
+                .collection("bills")
+                .document(documentName)
+                .set(bill)
                 .addOnSuccessListener(documentReference -> {
                     sendDataStatus.setValue(SendDataStatus.SUCCESS);
                 })

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.llopez.awallet.R;
+import com.llopez.awallet.model.EarningCategory;
 import com.llopez.awallet.utilities.Color;
 import com.llopez.awallet.utilities.ColorCategoryAdapter;
 import com.llopez.awallet.utilities.Validations;
@@ -32,6 +33,7 @@ public class CreateEarningCategoryFragment extends Fragment {
     private CreateEarningCategoryViewModel viewModel;
 
     private String hexColor;
+    private String colorSelected;
 
     public CreateEarningCategoryFragment() {
     }
@@ -46,13 +48,18 @@ public class CreateEarningCategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_create_earning_category, container, false);
+        boolean isEdit = getArguments().getBoolean("is_edit");
 
         categoryName = layout.findViewById(R.id.editTextEarningCategoryName);
         spinnerColor = layout.findViewById(R.id.spinnerCategoryEarningColor);
         btnCreateCategory = layout.findViewById(R.id.btnCreateEarningCategory);
 
         btnCreateCategory.setOnClickListener(v -> {
-            createOrUpdateEarningCategory();
+            if (isEdit) {
+                updateEarningCategory();
+            } else {
+                createEarningCategory();
+            }
         });
 
         ColorCategoryAdapter adapter = new ColorCategoryAdapter(getContext(), Color.CategoryColorList);
@@ -69,6 +76,21 @@ public class CreateEarningCategoryFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        if (isEdit) {
+            categoryName.setText(getArguments().getString("category_name"));
+            colorSelected = getArguments().getString("category_color");
+        }
+
+        if (colorSelected != null) {
+            Color _color = Color.CategoryColorList.stream()
+                    .filter(e -> colorSelected.equals(getResources().getString(e.color)))
+                    .findAny()
+                    .orElse(null);
+            hexColor = getResources().getString(_color.color);
+
+            spinnerColor.setSelection(Color.CategoryColorList.indexOf(_color));
+        }
 
         final Observer<SendDataStatus> dataStatusObserver = newValue -> {
             switch (newValue) {
@@ -90,10 +112,20 @@ public class CreateEarningCategoryFragment extends Fragment {
         return layout;
     }
 
-    private void createOrUpdateEarningCategory() {
+    private void createEarningCategory() {
         String categoryNameText = categoryName.getText().toString();
         if(Validations.IsValidString(categoryNameText)){
             viewModel.createCategory(categoryNameText, hexColor);
+        }else{
+            Toast.makeText(getActivity(), R.string.fragment_add_earning_category_name_error, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void updateEarningCategory() {
+        String categoryNameText = categoryName.getText().toString();
+
+        if(Validations.IsValidString(categoryNameText)){
+            viewModel.updateCategory(getArguments().getString("category_name"), categoryNameText, hexColor);
         }else{
             Toast.makeText(getActivity(), R.string.fragment_add_earning_category_name_error, Toast.LENGTH_LONG).show();
         }

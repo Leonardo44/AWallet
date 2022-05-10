@@ -109,11 +109,18 @@ public class BillCategoryListFragment extends Fragment implements BillCategoryAd
     }
 
     private void moveToAddCreateBillFragment() {
-        NavHostFragment.findNavController(this).navigate(R.id.action_billCategoryListFragment_to_createBillCategoryFragment);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("is_edit", false);
+        NavHostFragment.findNavController(this).navigate(R.id.action_billCategoryListFragment_to_createBillCategoryFragment, bundle);
     }
 
     @Override
     public void onEditBillCategory(BillCategory category) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("is_edit", true);
+        bundle.putString("category_name", category.getName());
+        bundle.putString("category_color", category.getColor());
+        NavHostFragment.findNavController(this).navigate(R.id.action_billCategoryListFragment_to_createBillCategoryFragment, bundle);
     }
 
     @Override

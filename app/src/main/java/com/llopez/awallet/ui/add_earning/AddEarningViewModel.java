@@ -94,4 +94,27 @@ public class AddEarningViewModel extends ViewModel {
                     sendDataStatus.setValue(SendDataStatus.ERROR);
                 });
     }
+
+    public void updateEarning(EarningCategory category, String documentName, String name, Double amount, String description) {
+        sendDataStatus.setValue(SendDataStatus.LOADING);
+
+        Map<String, Object> bill = new HashMap<>();
+        bill.put("name", name);
+        bill.put("amount", amount);
+        bill.put("description", description);
+        bill.put("createdAt", new Date());
+
+        DocumentReference userDataReference = firestore.collection("earning_category_"+ user.getEmail() +"").document(category.getName());
+
+        userDataReference
+                .collection("earnings")
+                .document(documentName)
+                .set(bill)
+                .addOnSuccessListener(documentReference -> {
+                    sendDataStatus.setValue(SendDataStatus.SUCCESS);
+                })
+                .addOnFailureListener(e -> {
+                    sendDataStatus.setValue(SendDataStatus.ERROR);
+                });
+    }
 }

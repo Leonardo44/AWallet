@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.llopez.awallet.model.BillCategory;
 import com.llopez.awallet.model.EarningCategory;
 import com.llopez.awallet.ui.add_bill.AddBillViewModel;
 import com.llopez.awallet.ui.add_bill.AddBillViewModelFactory;
@@ -42,9 +43,12 @@ public class AddEarningFragment extends Fragment {
     private AddEarningViewModel viewModel;
     private EarningCategory categorySelected;
 
+    private String categoryName;
+    private String earningDocumentName;
+
     public AddEarningFragment() { }
 
-    public void createOrUpdateEarning(){
+    public void createEarning(){
         String earningName = editTextEarningName.getText().toString();
         String earningDescription = editTextEarningDescription.getText().toString();
         String earningPrice = editTextEarningPrice.getText().toString();
@@ -66,6 +70,28 @@ public class AddEarningFragment extends Fragment {
         }
     }
 
+    public void updateEarning(){
+        String earningName = editTextEarningName.getText().toString();
+        String earningDescription = editTextEarningDescription.getText().toString();
+        String earningPrice = editTextEarningPrice.getText().toString();
+
+        if(!(Validations.IsValidString(earningName))){
+            Toast.makeText(getActivity(), R.string.fragment_add_earning_name_error, Toast.LENGTH_LONG).show();
+        }else{
+            try {
+                Double earningAmount = Double.parseDouble(earningPrice);
+
+                if (earningAmount > 0) {
+                    viewModel.updateEarning(categorySelected, earningDocumentName, earningName, earningAmount, earningDescription);
+                } else {
+                    Toast.makeText(getActivity(), R.string.fragment_add_earning_price_error, Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), R.string.fragment_add_earning_price_error, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +102,7 @@ public class AddEarningFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_add_earning, container, false);
+        boolean isEdit = getArguments().getBoolean("is_edit");
 
         editTextEarningName = layout.findViewById(R.id.editTextEarningName);
         editTextEarningDescription = layout.findViewById(R.id.editTextEarningDescription);
@@ -84,7 +111,11 @@ public class AddEarningFragment extends Fragment {
         categorySpinner = layout.findViewById(R.id.spinnerAddEarning);
 
         btnAddEarning.setOnClickListener(v -> {
-            createOrUpdateEarning();
+            if (isEdit) {
+                updateEarning();
+            } else {
+                createEarning();
+            }
         });
 
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -99,6 +130,18 @@ public class AddEarningFragment extends Fragment {
             }
         });
 
+        categorySpinner.setEnabled(true);
+        if (isEdit) {
+            categoryName = getArguments().getString("category_name");
+            earningDocumentName = getArguments().getString("earning_document_name");
+            Double amount = getArguments().getDouble("earning_amount");
+
+            editTextEarningName.setText(getArguments().getString("earning_name"));
+            editTextEarningPrice.setText(amount.toString());
+            editTextEarningDescription.setText(getArguments().getString("earning_description"));
+            categorySpinner.setEnabled(false);
+        }
+
         final Observer<GetDataStatus> getDataStatusObserver = newValue -> {
             switch (newValue) {
                 case INITIALIZE:
@@ -111,6 +154,16 @@ public class AddEarningFragment extends Fragment {
                     if (!viewModel.categorieList.isEmpty()) {
                         EarningCategoryAdapter adapter = new EarningCategoryAdapter(getContext(), viewModel.categorieList);
                         categorySpinner.setAdapter(adapter);
+
+                        if (categoryName != null) {
+                            EarningCategory _category = viewModel.categorieList.stream()
+                                    .filter(e -> categoryName.equals(e.getName()))
+                                    .findAny()
+                                    .orElse(null);
+
+                            categorySpinner.setSelection(viewModel.categorieList.indexOf(_category));
+                        }
+
                         btnAddEarning.setEnabled(true);
                     }
                 case NOT_INTERNET:

@@ -111,11 +111,21 @@ public class ListEarningsFragment extends Fragment implements EarningAdapter.Ear
     }
 
     private void moveToAddEarningFragment() {
-        NavHostFragment.findNavController(this).navigate(R.id.action_listEarningsFragment_to_addEarningFragment);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("is_edit", false);
+        NavHostFragment.findNavController(this).navigate(R.id.action_listEarningsFragment_to_addEarningFragment, bundle);
     }
 
     @Override
     public void onEditEarning(EarningObject earning) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("is_edit", true);
+        bundle.putString("category_name", earning.getCategory().getName());
+        bundle.putString("earning_document_name", earning.getDocumentName());
+        bundle.putString("earning_name", earning.getName());
+        bundle.putDouble("earning_amount", earning.getAmount());
+        bundle.putString("earning_description", earning.getDescription());
+        NavHostFragment.findNavController(this).navigate(R.id.action_listEarningsFragment_to_addEarningFragment, bundle);
     }
 
     @Override

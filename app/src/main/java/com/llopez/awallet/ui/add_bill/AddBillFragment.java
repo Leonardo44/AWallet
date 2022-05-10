@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.llopez.awallet.model.BillCategory;
+import com.llopez.awallet.model.BillObject;
 import com.llopez.awallet.model.EarningCategory;
 import com.llopez.awallet.utilities.BillCategoryAdapter;
 import com.llopez.awallet.utilities.GetDataStatus;
@@ -37,9 +38,12 @@ public class AddBillFragment extends Fragment {
     private AddBillViewModel viewModel;
     private BillCategory categorySelected;
 
+    private String categoryName;
+    private String billDocumentName;
+
     public AddBillFragment() { }
 
-    public void createOrUpdateBill(){
+    public void createBill(){
         String billName = editTextBillName.getText().toString();
         String billPrice = editTextBillPrice.getText().toString();
         String billDescription = editTextBillDescription.getText().toString();
@@ -61,6 +65,28 @@ public class AddBillFragment extends Fragment {
         }
     }
 
+    public void updateBill(){
+        String billName = editTextBillName.getText().toString();
+        String billPrice = editTextBillPrice.getText().toString();
+        String billDescription = editTextBillDescription.getText().toString();
+
+        if(!(Validations.IsValidString(billName))){
+            Toast.makeText(getActivity(), R.string.fragment_add_bill_title_error, Toast.LENGTH_LONG).show();
+        }else{
+            try {
+                Double billAmount = Double.parseDouble(billPrice);
+
+                if (billAmount > 0) {
+                    viewModel.updateBill(categorySelected, billDocumentName, billName, billAmount, billDescription);
+                } else {
+                    Toast.makeText(getActivity(), R.string.fragment_add_earning_price_error, Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), R.string.fragment_add_earning_price_error, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +97,7 @@ public class AddBillFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_add_bill, container, false);
+        boolean isEdit = getArguments().getBoolean("is_edit");
 
         editTextBillName = layout.findViewById(R.id.editTextBillName);
         editTextBillDescription = layout.findViewById(R.id.editTextBillDescription);
@@ -79,7 +106,11 @@ public class AddBillFragment extends Fragment {
         categorySpinner = layout.findViewById(R.id.spinnerAddBill);
 
         btnAddBill.setOnClickListener(v -> {
-            createOrUpdateBill();
+            if (isEdit) {
+                updateBill();
+            } else {
+                createBill();
+            }
         });
 
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -94,6 +125,18 @@ public class AddBillFragment extends Fragment {
             }
         });
 
+        categorySpinner.setEnabled(true);
+        if (isEdit) {
+            categoryName = getArguments().getString("category_name");
+            billDocumentName = getArguments().getString("bill_document_name");
+            Double amount = getArguments().getDouble("bill_amount");
+
+            editTextBillName.setText(getArguments().getString("bill_name"));
+            editTextBillPrice.setText(amount.toString());
+            editTextBillDescription.setText(getArguments().getString("bill_description"));
+            categorySpinner.setEnabled(false);
+        }
+
         final Observer<GetDataStatus> getDataStatusObserver = newValue -> {
             switch (newValue) {
                 case INITIALIZE:
@@ -106,6 +149,16 @@ public class AddBillFragment extends Fragment {
                     if (!viewModel.categorieList.isEmpty()) {
                         BillCategoryAdapter adapter = new BillCategoryAdapter(getContext(), viewModel.categorieList);
                         categorySpinner.setAdapter(adapter);
+
+                        if (categoryName != null) {
+                            BillCategory _category = viewModel.categorieList.stream()
+                                    .filter(e -> categoryName.equals(e.getName()))
+                                    .findAny()
+                                    .orElse(null);
+
+                            categorySpinner.setSelection(viewModel.categorieList.indexOf(_category));
+                        }
+
                         btnAddBill.setEnabled(true);
                     }
                 case NOT_INTERNET:
