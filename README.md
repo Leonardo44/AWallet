@@ -116,6 +116,10 @@ El siguiente enlace se muestra el manual técnico de la aplicación [aquí](http
 
 CC-BY-NC: permite distribuir y hacer cambios en la obra siempre y cuando se incluya el
 nombre del autor y la licencia. Sin embargo, no se permite su uso con fines comerciales.
+## <------ DESCARGAR APK ---------> ##
+
+https://drive.google.com/file/d/1YTwKoHSYGsb_hgXYrok9Egh5ioneAOiv/view?usp=sharing
+
 
 ## Otras Licencias ##
 
