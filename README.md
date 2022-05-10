@@ -12,6 +12,7 @@ destinatarios de los mismos.
 
 ## Descripción ##
 
+
 El problema se centra en las personas que no conllevan un orden financiero en sus
 cuentas y gastos, con la aplicación se resuelve el desorden del usuario y organiza sus
 cuentas y documenta todas las transacciones realizadas por el usuario teniendo un
@@ -113,8 +114,11 @@ El siguiente enlace se muestra el manual técnico de la aplicación [aquí](http
 ## <------ DESCARGAR APK ---------> ##
 
 https://drive.google.com/drive/folders/1gyfMTQbX99N700T9W-JxCNdqItjl5k0U?usp=sharing
+![Historia de Instagram de Publicidad Moderno Neon (1)](https://user-images.githubusercontent.com/30736865/167719610-36973241-8783-4330-baf9-cac4ac12bcb4.png)
+
 
 ## Licencias Creative Commons ##
+
 
 ![CC](https://co.creativecommons.net/wp-content/uploads/sites/27/2008/02/by-nc.png "CC-BY-NC")
 
