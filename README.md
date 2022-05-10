@@ -107,10 +107,6 @@ El siguiente enlace se muestra el manual de usuario para la aplicación [aquí](
 
 El siguiente enlace se muestra el manual técnico de la aplicación [aquí](https://www.canva.com/design/DAE-V6_5w9Y/wOUzRzgO8lkdRZKNHsMGqA/view?utm_content=DAE-V6_5w9Y&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
-## Funcionamiento - Video en drive ##
-
-[aquí]()
-
 ## Desarrolladores ##
 
 * Aguilar Urquilla, Erick Gilberto                      AU171965   -  T03
