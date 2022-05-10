@@ -8,14 +8,14 @@ public class BillObject {
     private String name;
     private Double amount;
     private String description;
-    private String createdAt;
+    private Date createdAt;
     private BillCategory category;
 
     public BillObject(){
 
     }
 
-    public BillObject(BillCategory category, String name, Double amount, String description, String createdAt){
+    public BillObject(BillCategory category, String name, Double amount, String description, Date createdAt){
         this.category = category;
         this.name = name;
         this.amount = amount;
@@ -41,10 +41,10 @@ public class BillObject {
     public void setDescription(String description) {
         this.description = description;
     }
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
     public BillCategory getCategory() {
@@ -56,7 +56,6 @@ public class BillObject {
 
     public Date getCreatedAtDate() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
-        Date date = dateFormat.parse(createdAt);
-        return  date;
+        return  createdAt;
     }
 }

@@ -50,7 +50,7 @@ public class EarningListViewModel extends ViewModel {
                         List<EarningCategory> categoryList = new ArrayList<>();
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            EarningCategory category = new EarningCategory(document.getString("name"), document.getString("color"), document.getString("createdAt"));
+                            EarningCategory category = new EarningCategory(document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
                             categoryList.add(category);
                         }
 
@@ -61,12 +61,12 @@ public class EarningListViewModel extends ViewModel {
                                 firestore.collection("earning_category_" + user.getEmail() + "")
                                         .document(c.getName())
                                         .collection("earnings")
-                                        .orderBy("createdAt", Query.Direction.DESCENDING)
+                                        .orderBy("createdAt", Query.Direction.ASCENDING)
                                         .get()
                                         .addOnCompleteListener(t -> {
                                             if (t.isSuccessful()) {
                                                 for (QueryDocumentSnapshot d : t.getResult()) {
-                                                    EarningObject bill = new EarningObject(c, d.getString("name"), d.getDouble("amount"), d.getString("description"), d.getString("createdAt"));
+                                                    EarningObject bill = new EarningObject(c, d.getString("name"), d.getDouble("amount"), d.getString("description"), d.getTimestamp("createdAt").toDate());
                                                     earningsList.add(bill);
                                                 }
 

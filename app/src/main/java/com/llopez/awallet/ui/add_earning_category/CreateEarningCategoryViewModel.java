@@ -38,7 +38,7 @@ public class CreateEarningCategoryViewModel extends ViewModel {
         Map<String, Object> category = new HashMap<>();
         category.put("name", name);
         category.put("color", color);
-        category.put("createdAt", dateFormat.format(new Date()));
+        category.put("createdAt", new Date());
 
         CollectionReference userDataReference = firestore.collection("earning_category_"+ user.getEmail() +"");
 

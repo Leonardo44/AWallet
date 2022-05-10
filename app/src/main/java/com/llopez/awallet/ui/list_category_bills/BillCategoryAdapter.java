@@ -17,6 +17,8 @@ import com.llopez.awallet.model.BillCategory;
 import com.llopez.awallet.R;
 import com.llopez.awallet.utilities.Color;
 
+import java.text.SimpleDateFormat;
+
 public class BillCategoryAdapter extends FirestoreRecyclerAdapter<BillCategory, BillCategoryAdapter.ViewHolder> {
     BillCategoryAdapterListener listener;
 
@@ -34,9 +36,11 @@ public class BillCategoryAdapter extends FirestoreRecyclerAdapter<BillCategory, 
 
     @Override
     protected void onBindViewHolder(@NonNull BillCategoryAdapter.ViewHolder holder, int position, @NonNull BillCategory category) {
+        String createdAt = new SimpleDateFormat("MM/dd/yyyy").format(category.getCreatedAt());
+
         holder.tvName.setText(category.getName());
         holder.tvDateKey.setText(R.string.bill_category_item_list);
-        holder.tvDateValue.setText(category.getCreatedAt());
+        holder.tvDateValue.setText(createdAt);
         holder.viewColor.setBackgroundColor(android.graphics.Color.parseColor(category.getColor()));
     }
 

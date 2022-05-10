@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -63,8 +64,8 @@ public class AddBillViewModel extends ViewModel {
                         for (int i= 0; i < queryDocumentSnapshots.getDocuments().size(); i++){
                             String name = queryDocumentSnapshots.getDocuments().get(i).getString("name");
                             String color = queryDocumentSnapshots.getDocuments().get(i).getString("color");
-                            String createdAt = queryDocumentSnapshots.getDocuments().get(i).getString("createdAt");
-                            BillCategory category = new BillCategory(name, color, createdAt);
+                            Timestamp createdAt = queryDocumentSnapshots.getDocuments().get(i).getTimestamp("createdAt");
+                            BillCategory category = new BillCategory(name, color, createdAt.toDate());
 
                             list.add(category);
                         }
@@ -82,7 +83,7 @@ public class AddBillViewModel extends ViewModel {
         earning.put("name", name);
         earning.put("amount", amount);
         earning.put("description", description);
-        earning.put("createdAt", dateFormat.format(new Date()));
+        earning.put("createdAt", new Date());
 
         DocumentReference userDataReference = firestore.collection("bill_category_"+ user.getEmail() +"").document(category.getName());
 

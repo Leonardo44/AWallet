@@ -60,7 +60,7 @@ public class ListBillsViewModel extends ViewModel {
                         List<BillCategory> categoryList = new ArrayList<>();
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            BillCategory category = new BillCategory(document.getString("name"), document.getString("color"), document.getString("createdAt"));
+                            BillCategory category = new BillCategory(document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
                             categoryList.add(category);
                         }
 
@@ -71,12 +71,12 @@ public class ListBillsViewModel extends ViewModel {
                                 firestore.collection("bill_category_" + user.getEmail() + "")
                                         .document(c.getName())
                                         .collection("bills")
-                                        .orderBy("createdAt", Query.Direction.DESCENDING)
+                                        .orderBy("createdAt", Query.Direction.ASCENDING)
                                         .get()
                                         .addOnCompleteListener(t -> {
                                             if (t.isSuccessful()) {
                                                 for (QueryDocumentSnapshot d : t.getResult()) {
-                                                    BillObject bill = new BillObject(c, d.getString("name"), d.getDouble("amount"), d.getString("description"), d.getString("createdAt"));
+                                                    BillObject bill = new BillObject(c, d.getString("name"), d.getDouble("amount"), d.getString("description"), d.getDate("createdAt"));
                                                     billsList.add(bill);
                                                 }
 

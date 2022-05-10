@@ -1,15 +1,18 @@
 package com.llopez.awallet.model;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 public class EarningCategory {
     private String name;
     private String color;
-    private String createdAt;
+    private Date createdAt;
 
     public EarningCategory(){
 
     }
 
-    public EarningCategory(String name, String color, String createdAt){
+    public EarningCategory(String name, String color, Date createdAt){
         this.name = name;
         this.color = color;
         this.createdAt = createdAt;
@@ -27,10 +30,10 @@ public class EarningCategory {
     public void setColor(String color) {
         this.color = color;
     }
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 }

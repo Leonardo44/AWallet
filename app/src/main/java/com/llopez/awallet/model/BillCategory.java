@@ -1,15 +1,17 @@
 package com.llopez.awallet.model;
 
+import java.util.Date;
+
 public class BillCategory {
     private String name;
     private String color;
-    private String createdAt;
+    private Date createdAt;
 
     public BillCategory(){
 
     }
 
-    public BillCategory(String name, String color, String createdAt){
+    public BillCategory(String name, String color, Date createdAt){
         this.name = name;
         this.color = color;
         this.createdAt = createdAt;
@@ -27,10 +29,10 @@ public class BillCategory {
     public void setColor(String color) {
         this.color = color;
     }
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 }

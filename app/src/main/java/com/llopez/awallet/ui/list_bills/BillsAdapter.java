@@ -9,6 +9,7 @@ import com.llopez.awallet.model.BillObject;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class BillsAdapter  extends RecyclerView.Adapter<BillsAdapter.ViewHolder> {
@@ -50,13 +51,15 @@ public class BillsAdapter  extends RecyclerView.Adapter<BillsAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        String createdAt = new SimpleDateFormat("MM/dd/yyyy").format(localDataSet.get(position).getCreatedAt());
+
         viewHolder.tvValue.setText("$" + localDataSet.get(position).getAmount() + "");
         viewHolder.tvBillItemCategory.setText(localDataSet.get(position).getCategory().getName());
         viewHolder.viewIdentifierBillItem.setBackgroundColor(android.graphics.Color.parseColor(localDataSet.get(position).getCategory().getColor()));
         viewHolder.tvBillItemCreatedAtTitle.setText(R.string.item_list_name_object);
         viewHolder.tvBillItemCreatedAtValue.setText(localDataSet.get(position).getName());
         viewHolder.tvBillItemUpdatedAtTitle.setText(R.string.item_list_date_object);
-        viewHolder.tvBillItemUpdatedAtValue.setText(localDataSet.get(position).getCreatedAt());
+        viewHolder.tvBillItemUpdatedAtValue.setText(createdAt);
         viewHolder.tvBillItemDescription.setText(localDataSet.get(position).getDescription());
     }
 

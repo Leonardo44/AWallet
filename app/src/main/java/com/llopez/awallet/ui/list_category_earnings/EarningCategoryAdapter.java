@@ -14,6 +14,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.llopez.awallet.R;
 import com.llopez.awallet.model.EarningCategory;
 
+import java.text.SimpleDateFormat;
+
 public class EarningCategoryAdapter extends FirestoreRecyclerAdapter<EarningCategory, EarningCategoryAdapter.ViewHolder> {
     EarningCategoryAdapter.EarningCategoryAdapterListener listener;
 
@@ -31,9 +33,11 @@ public class EarningCategoryAdapter extends FirestoreRecyclerAdapter<EarningCate
 
     @Override
     protected void onBindViewHolder(@NonNull EarningCategoryAdapter.ViewHolder holder, int position, @NonNull EarningCategory category) {
+        String createdAt = new SimpleDateFormat("MM/dd/yyyy").format(category.getCreatedAt());
+
         holder.tvName.setText(category.getName());
         holder.tvDateKey.setText(R.string.bill_category_item_list);
-        holder.tvDateValue.setText(category.getCreatedAt());
+        holder.tvDateValue.setText(createdAt);
         holder.viewColor.setBackgroundColor(android.graphics.Color.parseColor(category.getColor()));
     }
 

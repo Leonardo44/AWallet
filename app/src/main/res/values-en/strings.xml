@@ -79,4 +79,8 @@
     <string name="login_contet">Easily sign in with your Google account.</string>
 
     <string name="success_add_data_message">Registration successfully created</string>
+
+    <string name="home_fragment_title">Summary of the month </string>
+    <string name="home_earning_title">Earnings</string>
+    <string name="home_bills_title">Bills</string>
 </resources>

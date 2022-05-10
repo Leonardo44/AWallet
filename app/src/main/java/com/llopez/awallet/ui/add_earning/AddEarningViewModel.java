@@ -3,6 +3,7 @@ package com.llopez.awallet.ui.add_earning;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -59,8 +60,9 @@ public class AddEarningViewModel extends ViewModel {
                         for (int i= 0; i < queryDocumentSnapshots.getDocuments().size(); i++){
                             String name = queryDocumentSnapshots.getDocuments().get(i).getString("name");
                             String color = queryDocumentSnapshots.getDocuments().get(i).getString("color");
-                            String createdAt = queryDocumentSnapshots.getDocuments().get(i).getString("createdAt");
-                            EarningCategory category = new EarningCategory(name, color, createdAt);
+                            Timestamp timestamp = queryDocumentSnapshots.getDocuments().get(i).getTimestamp("createdAt");
+
+                            EarningCategory category = new EarningCategory(name, color, timestamp.toDate());
 
                             list.add(category);
                         }
@@ -78,7 +80,7 @@ public class AddEarningViewModel extends ViewModel {
         earning.put("name", name);
         earning.put("amount", amount);
         earning.put("description", description);
-        earning.put("createdAt", dateFormat.format(new Date()));
+        earning.put("createdAt", new Date());
 
         DocumentReference userDataReference = firestore.collection("earning_category_"+ user.getEmail() +"").document(category.getName());
 
