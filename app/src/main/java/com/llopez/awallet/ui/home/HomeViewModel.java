@@ -64,85 +64,87 @@ public class HomeViewModel extends ViewModel {
         billMonthAmount = 0.0;
         earningMonthAmount = 0.0;
 
-        firestore.collection("bill_category_"+ user.getEmail() +"")
-                .orderBy("createdAt")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        List<BillCategory> categoryList = new ArrayList<>();
+        if (user != null) {
+            firestore.collection("bill_category_"+ user.getEmail() +"")
+                    .orderBy("createdAt")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            List<BillCategory> categoryList = new ArrayList<>();
 
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            BillCategory category = new BillCategory(document.getString("name"), document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
-                            categoryList.add(category);
-                        }
-
-                        if (categoryList.isEmpty()) {
-                            billDataStatus.setValue(GetDataStatus.SUCCESS);
-                        } else {
-                            for (BillCategory c : categoryList) {
-                                firestore.collection("bill_category_" + user.getEmail() + "")
-                                        .document(c.getName())
-                                        .collection("bills")
-                                        .whereGreaterThanOrEqualTo("createdAt",  Date.from(startDate.atStartOfDay(defaultZoneId).toInstant()))
-                                        .whereLessThanOrEqualTo("createdAt", Date.from(endDate.atStartOfDay(defaultZoneId).toInstant()))
-                                        .get()
-                                        .addOnCompleteListener(t -> {
-                                            if (t.isSuccessful()) {
-                                                for (QueryDocumentSnapshot d : t.getResult()) {
-                                                    billMonthAmount += d.getDouble("amount");
-                                                }
-
-                                                if (categoryList.get(categoryList.size() - 1) == c) {
-                                                    billDataStatus.setValue(GetDataStatus.SUCCESS);
-                                                }
-                                            }
-                                        });
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                BillCategory category = new BillCategory(document.getString("name"), document.getString("name"), document.getString("color"), document.getTimestamp("createdAt").toDate());
+                                categoryList.add(category);
                             }
-                        }
-                    } else {
-                        billDataStatus.setValue(GetDataStatus.ERROR);
-                    }
-                });
 
-        firestore.collection("earning_category_"+ user.getEmail() +"")
-                .orderBy("createdAt")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        List<EarningCategory> categoryList = new ArrayList<>();
+                            if (categoryList.isEmpty()) {
+                                billDataStatus.setValue(GetDataStatus.SUCCESS);
+                            } else {
+                                for (BillCategory c : categoryList) {
+                                    firestore.collection("bill_category_" + user.getEmail() + "")
+                                            .document(c.getName())
+                                            .collection("bills")
+                                            .whereGreaterThanOrEqualTo("createdAt",  Date.from(startDate.atStartOfDay(defaultZoneId).toInstant()))
+                                            .whereLessThanOrEqualTo("createdAt", Date.from(endDate.atStartOfDay(defaultZoneId).toInstant()))
+                                            .get()
+                                            .addOnCompleteListener(t -> {
+                                                if (t.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot d : t.getResult()) {
+                                                        billMonthAmount += d.getDouble("amount");
+                                                    }
 
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Timestamp timestamp = document.getTimestamp("createdAt");
-                            EarningCategory category = new EarningCategory(document.getString("name"), document.getString("name"), document.getString("color"), timestamp.toDate());
-                            categoryList.add(category);
-                        }
-
-                        if (categoryList.isEmpty()) {
-                            earningDataStatus.setValue(GetDataStatus.SUCCESS);
-                        } else {
-                            for (EarningCategory c : categoryList) {
-                                firestore.collection("earning_category_" + user.getEmail() + "")
-                                        .document(c.getName())
-                                        .collection("earnings")
-                                        .whereGreaterThanOrEqualTo("createdAt",  Date.from(startDate.atStartOfDay(defaultZoneId).toInstant()))
-                                        .whereLessThanOrEqualTo("createdAt", Date.from(endDate.atStartOfDay(defaultZoneId).toInstant()))
-                                        .get()
-                                        .addOnCompleteListener(t -> {
-                                            if (t.isSuccessful()) {
-                                                for (QueryDocumentSnapshot d : t.getResult()) {
-                                                    earningMonthAmount += d.getDouble("amount");
+                                                    if (categoryList.get(categoryList.size() - 1) == c) {
+                                                        billDataStatus.setValue(GetDataStatus.SUCCESS);
+                                                    }
                                                 }
-
-                                                if (categoryList.get(categoryList.size() - 1) == c) {
-                                                    earningDataStatus.setValue(GetDataStatus.SUCCESS);
-                                                }
-                                            }
-                                        });
+                                            });
+                                }
                             }
+                        } else {
+                            billDataStatus.setValue(GetDataStatus.ERROR);
                         }
-                    } else {
-                        earningDataStatus.setValue(GetDataStatus.ERROR);
-                    }
-                });
+                    });
+
+            firestore.collection("earning_category_"+ user.getEmail() +"")
+                    .orderBy("createdAt")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            List<EarningCategory> categoryList = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Timestamp timestamp = document.getTimestamp("createdAt");
+                                EarningCategory category = new EarningCategory(document.getString("name"), document.getString("name"), document.getString("color"), timestamp.toDate());
+                                categoryList.add(category);
+                            }
+
+                            if (categoryList.isEmpty()) {
+                                earningDataStatus.setValue(GetDataStatus.SUCCESS);
+                            } else {
+                                for (EarningCategory c : categoryList) {
+                                    firestore.collection("earning_category_" + user.getEmail() + "")
+                                            .document(c.getName())
+                                            .collection("earnings")
+                                            .whereGreaterThanOrEqualTo("createdAt",  Date.from(startDate.atStartOfDay(defaultZoneId).toInstant()))
+                                            .whereLessThanOrEqualTo("createdAt", Date.from(endDate.atStartOfDay(defaultZoneId).toInstant()))
+                                            .get()
+                                            .addOnCompleteListener(t -> {
+                                                if (t.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot d : t.getResult()) {
+                                                        earningMonthAmount += d.getDouble("amount");
+                                                    }
+
+                                                    if (categoryList.get(categoryList.size() - 1) == c) {
+                                                        earningDataStatus.setValue(GetDataStatus.SUCCESS);
+                                                    }
+                                                }
+                                            });
+                                }
+                            }
+                        } else {
+                            earningDataStatus.setValue(GetDataStatus.ERROR);
+                        }
+                    });
+        }
     }
 }
